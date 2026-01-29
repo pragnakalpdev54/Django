@@ -1,0 +1,36 @@
+site_name: Django Training Guide
+site_url: https://pragnakalpdev54.github.io/Django/
+use_directory_urls: false
+
+theme:
+  name: material
+  custom_dir: overrides
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.instant
+    - toc.integrate
+    - content.code.copy
+    - navigation.footer
+
+nav:
+  - Home: 00_Index.md
+  - Introduction & Setup: 01_Introduction_and_Setup.md
+  - Models & Database: 02_FBV_Models_and_Database.md
+  - Views & URLs: 03_FBV_Views_and_URLs.md
+  - Templates & Forms: 04_FBV_Templates_and_Forms.md
+  - Complete Project: 05_FBV_Complete_Project.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - fenced_code
+  - admonition
+  - footnotes
+  - codehilite
+
+extra_css:
+  - assets/stylesheets/footer.css
+  - assets/stylesheets/extra.css
+  - assets/stylesheets/sidebar.css

@@ -1,0 +1,64 @@
+{# ======================================
+   MODERN PREVIOUS / NEXT NAVIGATION (DESIGN 11)
+====================================== #}
+
+{% if page.previous_page or page.next_page %}
+<nav class="md-footer__nav md-grid pill-navigation" aria-label="Footer navigation">
+  
+  {% if page.previous_page %}
+  <a href="{{ page.previous_page.url | url }}"
+     class="pill-btn pill-prev"
+     aria-label="Previous page">
+    <span class="pill-arrow">‹</span>
+    <span class="pill-text">PREVIOUS</span>
+  </a>
+  {% else %}
+  <div></div>
+  {% endif %}
+
+  {% if page.next_page %}
+  <a href="{{ page.next_page.url | url }}"
+     class="pill-btn pill-next"
+     aria-label="Next page">
+    <span class="pill-text">NEXT</span>
+    <span class="pill-arrow">›</span>
+  </a>
+  {% endif %}
+
+</nav>
+{% endif %}
+
+{# ======================================
+   CUSTOM FOOTER
+====================================== #}
+
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner footer-custom">
+
+      <!-- Left -->
+      <div class="footer-col footer-left">
+        <strong>Django Training Guide</strong>
+      </div>
+
+      <!-- Center -->
+      <div class="footer-col footer-center">
+        <p>© 2026 Pragnakalp Techlabs</p>
+      </div>
+
+      <!-- Right -->
+      <div class="footer-col footer-right">
+        <p class="footer-heading">Contributors</p>
+        <div class="contributors">
+          <span class="contributor">Rahul</span>
+          <span class="contributor">Nikunj</span>
+          <span class="contributor">Neel</span>
+          <span class="contributor">Dhvanil</span>
+          <span class="contributor">Mansi</span>
+          <span class="contributor">Darshit</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
