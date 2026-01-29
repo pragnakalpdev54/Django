@@ -1,0 +1,1511 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://pragnakalpdev54.github.io/Django/01_Introduction_and_Setup.html">
+      
+      
+        <link rel="prev" href="00_Index.html">
+      
+      
+        <link rel="next" href="02_FBV_Models_and_Database.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Introduction & Setup - Django Training Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/footer.css">
+    
+      <link rel="stylesheet" href="assets/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="assets/stylesheets/sidebar.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#part-1-introduction-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Django Training Guide" class="md-header__button md-logo" aria-label="Django Training Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Django Training Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction & Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Django Training Guide" class="md-nav__button md-logo" aria-label="Django Training Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Django Training Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="00_Index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction & Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="01_Introduction_and_Setup.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction & Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-django" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Django?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Django?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-uses-django" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who Uses Django?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#django-architecture-mvt-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Django Architecture (MVT Pattern)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Django Architecture (MVT Pattern)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#components-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-python-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Verify Python Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-project-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create Project Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Virtual Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-install-django" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Install Django
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-install-additional-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Install Additional Packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-your-first-django-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Your First Django Project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Your First Django Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-django-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create Django Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-structure-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-run-development-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Run Development Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-django-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Django App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-structure-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        App Structure Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-register-the-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Register the App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-apply-initial-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Apply Initial Migrations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-create-superuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Create Superuser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-access-admin-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Access Admin Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-django-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Django Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding Django Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowed-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allowed Hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#django-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Django Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Django Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-app-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project &amp; App Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell &amp; Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utility-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Structure Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create .gitignore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02_FBV_Models_and_Database.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models & Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03_FBV_Views_and_URLs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Views & URLs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04_FBV_Templates_and_Forms.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates & Forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05_FBV_Complete_Project.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="part-1-introduction-setup">Part 1: Introduction &amp; Setup<a class="headerlink" href="#part-1-introduction-setup" title="Permanent link">&para;</a></h1>
+<h2 id="what-is-django">What is Django?<a class="headerlink" href="#what-is-django" title="Permanent link">&para;</a></h2>
+<p>Django is a high-level Python web framework that enables rapid development of secure and maintainable websites. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel.</p>
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Fast Development</strong>: Django was designed to help developers take applications from concept to completion quickly</li>
+<li><strong>Security</strong>: Django helps developers avoid many common security mistakes (SQL injection, XSS, CSRF, etc.)</li>
+<li><strong>Scalable</strong>: Used by Instagram, Pinterest, Mozilla, and many high-traffic sites</li>
+<li><strong>Batteries Included</strong>: Comes with authentication, admin panel, ORM, forms, and more out of the box</li>
+<li><strong>Versatile</strong>: Can build any type of website - from content management systems to social networks to scientific computing platforms</li>
+</ul>
+<h3 id="who-uses-django">Who Uses Django?<a class="headerlink" href="#who-uses-django" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Instagram</strong> - Handles billions of requests daily</li>
+<li><strong>Pinterest</strong> - Manages millions of pins and users</li>
+<li><strong>Mozilla</strong> - Powers their support and add-ons sites</li>
+<li><strong>National Geographic</strong> - Content management</li>
+<li><strong>NASA</strong> - Various internal applications</li>
+</ul>
+<hr />
+<h2 id="django-architecture-mvt-pattern">Django Architecture (MVT Pattern)<a class="headerlink" href="#django-architecture-mvt-pattern" title="Permanent link">&para;</a></h2>
+<p>Django follows the <strong>MVT (Model-View-Template)</strong> pattern, which is similar to MVC (Model-View-Controller):</p>
+<div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────────────────────────┐
+│                    User Request                         │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│                  URLs (urls.py)                         │
+│            Maps URL patterns to Views                   │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│                  VIEW (views.py)                        │
+│          Contains business logic &amp; processing           │
+│                                                          │
+│    ┌──────────────────┐      ┌──────────────────┐     │
+│    │  Queries MODEL   │◄────►│  Renders TEMPLATE│     │
+│    └──────────────────┘      └──────────────────┘     │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│               MODEL (models.py)                         │
+│          Database structure &amp; ORM queries               │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│              TEMPLATE (HTML files)                      │
+│          Presentation layer with Django syntax          │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│                  HTTP Response                          │
+└─────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="components-explained">Components Explained<a class="headerlink" href="#components-explained" title="Permanent link">&para;</a></h3>
+<p><strong>Model (M):</strong>
+- Defines data structure (database tables)
+- Handles data logic and database operations
+- Written in Python classes
+- Uses Django ORM (Object-Relational Mapping)</p>
+<p><strong>View (V):</strong>
+- Contains business logic
+- Processes user requests
+- Interacts with models
+- Passes data to templates
+- Returns HTTP responses</p>
+<p><strong>Template (T):</strong>
+- Presentation layer (HTML)
+- Uses Django Template Language (DTL)
+- Displays data from views
+- Handles user interface</p>
+<p><strong>URLs:</strong>
+- Routes requests to appropriate views
+- Maps URL patterns to view functions/classes
+- Handles URL parameters</p>
+<hr />
+<h2 id="environment-setup">Environment Setup<a class="headerlink" href="#environment-setup" title="Permanent link">&para;</a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>Before starting, ensure you have:
+- Python 3.8 or higher
+- pip (Python package manager)
+- Virtual environment tool (venv)
+- Text editor or IDE (VS Code, PyCharm, etc.)</p>
+<h3 id="step-1-verify-python-installation">Step 1: Verify Python Installation<a class="headerlink" href="#step-1-verify-python-installation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Check Python version</span>
+python<span class="w"> </span>--version
+<span class="c1"># or</span>
+python3<span class="w"> </span>--version
+
+<span class="c1"># Expected output: Python 3.8.x or higher</span>
+</code></pre></div>
+
+<p>If Python is not installed, download it from <a href="https://www.python.org/downloads/">python.org</a></p>
+<h3 id="step-2-create-project-directory">Step 2: Create Project Directory<a class="headerlink" href="#step-2-create-project-directory" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create a directory for your Django projects</span>
+mkdir<span class="w"> </span>django_projects
+<span class="nb">cd</span><span class="w"> </span>django_projects
+</code></pre></div>
+
+<h3 id="step-3-create-virtual-environment">Step 3: Create Virtual Environment<a class="headerlink" href="#step-3-create-virtual-environment" title="Permanent link">&para;</a></h3>
+<p>A virtual environment isolates your project dependencies from other Python projects.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create a virtual environment named &#39;django_env&#39;</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>django_env
+
+<span class="c1"># Activate virtual environment</span>
+<span class="c1"># On Linux/Mac:</span>
+<span class="nb">source</span><span class="w"> </span>django_env/bin/activate
+
+<span class="c1"># On Windows:</span>
+django_env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+
+<span class="c1"># You should see (django_env) in your terminal prompt</span>
+</code></pre></div>
+
+<p><strong>Why use virtual environments?</strong>
+- Isolates project dependencies
+- Prevents version conflicts
+- Makes project portable
+- Easy to replicate environment</p>
+<h3 id="step-4-install-django">Step 4: Install Django<a class="headerlink" href="#step-4-install-django" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Install latest Django version</span>
+pip<span class="w"> </span>install<span class="w"> </span>django
+
+<span class="c1"># Verify installation</span>
+django-admin<span class="w"> </span>--version
+
+<span class="c1"># Expected output: 5.x.x or similar</span>
+</code></pre></div>
+
+<h3 id="step-5-install-additional-packages">Step 5: Install Additional Packages<a class="headerlink" href="#step-5-install-additional-packages" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Install useful packages for our project</span>
+pip<span class="w"> </span>install<span class="w"> </span>pillow<span class="w">              </span><span class="c1"># For image handling</span>
+pip<span class="w"> </span>install<span class="w"> </span>python-decouple<span class="w">     </span><span class="c1"># For environment variables</span>
+pip<span class="w"> </span>install<span class="w"> </span>django-crispy-forms<span class="w"> </span><span class="c1"># For better forms (optional)</span>
+
+<span class="c1"># Create requirements.txt to track dependencies</span>
+pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+</code></pre></div>
+
+<p><strong>What is requirements.txt?</strong>
+- Lists all project dependencies
+- Makes it easy to install packages on another machine
+- Essential for deployment</p>
+<hr />
+<h2 id="creating-your-first-django-project">Creating Your First Django Project<a class="headerlink" href="#creating-your-first-django-project" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-create-django-project">Step 1: Create Django Project<a class="headerlink" href="#step-1-create-django-project" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create a new Django project named &#39;taskmanager&#39;</span>
+django-admin<span class="w"> </span>startproject<span class="w"> </span>taskmanager
+
+<span class="c1"># Navigate to project directory</span>
+<span class="nb">cd</span><span class="w"> </span>taskmanager
+
+<span class="c1"># View project structure</span>
+ls<span class="w"> </span>-la<span class="w">  </span><span class="c1"># Linux/Mac</span>
+dir<span class="w">     </span><span class="c1"># Windows</span>
+</code></pre></div>
+
+<h3 id="project-structure-explained">Project Structure Explained<a class="headerlink" href="#project-structure-explained" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">taskmanager</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">manage</span><span class="p">.</span><span class="nx">py</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="nx">Command</span><span class="o">-</span><span class="nx">line</span><span class="w"> </span><span class="nx">utility</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">Django</span>
+<span class="err">└──</span><span class="w"> </span><span class="nx">taskmanager</span><span class="o">/</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="nx">Python</span><span class="w"> </span><span class="kn">package</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">your</span><span class="w"> </span><span class="nx">project</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="nx">__init__</span><span class="p">.</span><span class="nx">py</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">Makes</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">directory</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">Python</span><span class="w"> </span><span class="kn">package</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="nx">settings</span><span class="p">.</span><span class="nx">py</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">Project</span><span class="w"> </span><span class="nx">settings</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">configuration</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="nx">urls</span><span class="p">.</span><span class="nx">py</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="nx">URL</span><span class="w"> </span><span class="nx">declarations</span><span class="w"> </span><span class="p">(</span><span class="nx">routing</span><span class="p">)</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="nx">asgi</span><span class="p">.</span><span class="nx">py</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="nx">ASGI</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">async</span><span class="w"> </span><span class="nx">servers</span>
+<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="nx">wsgi</span><span class="p">.</span><span class="nx">py</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="nx">WSGI</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">deployment</span>
+</code></pre></div>
+
+<p><strong>File Descriptions:</strong></p>
+<p><strong><code>manage.py</code></strong>
+- Command-line utility to interact with Django project
+- Used to run server, create apps, migrations, etc.
+- Don't modify this file</p>
+<p><strong><code>settings.py</code></strong>
+- All project settings
+- Database configuration
+- Installed apps
+- Middleware
+- Templates configuration
+- Static files settings</p>
+<p><strong><code>urls.py</code></strong>
+- URL routing for the project
+- Maps URLs to views
+- Like a "table of contents" for your site</p>
+<p><strong><code>wsgi.py</code> and <code>asgi.py</code></strong>
+- Entry points for web servers
+- Used in production deployment
+- WSGI for synchronous, ASGI for asynchronous</p>
+<h3 id="step-2-run-development-server">Step 2: Run Development Server<a class="headerlink" href="#step-2-run-development-server" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Run the development server</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+
+<span class="c1"># Expected output:</span>
+<span class="c1"># Watching for file changes with StatReloader</span>
+<span class="c1"># Performing system checks...</span>
+<span class="c1"># System check identified no issues (0 silenced).</span>
+<span class="c1"># You have 18 unapplied migration(s)...</span>
+<span class="c1"># Starting development server at http://127.0.0.1:8000/</span>
+<span class="c1"># Quit the server with CONTROL-C.</span>
+</code></pre></div>
+
+<p>Open your browser and visit: <code>http://127.0.0.1:8000/</code></p>
+<p>You should see the Django welcome page! 🎉</p>
+<p><strong>Note:</strong> Ignore the migration warning for now. We'll handle it soon.</p>
+<h3 id="step-3-create-django-app">Step 3: Create Django App<a class="headerlink" href="#step-3-create-django-app" title="Permanent link">&para;</a></h3>
+<p>Django projects are organized into <strong>apps</strong>. An app is a web application that does something specific.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Stop the server (Ctrl+C)</span>
+<span class="c1"># Create an app named &#39;tasks&#39;</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>startapp<span class="w"> </span>tasks
+</code></pre></div>
+
+<h3 id="app-structure-explained">App Structure Explained<a class="headerlink" href="#app-structure-explained" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">tasks</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">__init__</span><span class="p">.</span><span class="nx">py</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="nx">Python</span><span class="w"> </span><span class="kn">package</span><span class="w"> </span><span class="nx">marker</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">admin</span><span class="p">.</span><span class="nx">py</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="nx">Admin</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">configuration</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">apps</span><span class="p">.</span><span class="nx">py</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="nx">App</span><span class="w"> </span><span class="nx">configuration</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">migrations</span><span class="o">/</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="nx">Database</span><span class="w"> </span><span class="nx">migrations</span><span class="w"> </span><span class="nx">folder</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">__init__</span><span class="p">.</span><span class="nx">py</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">models</span><span class="p">.</span><span class="nx">py</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="nx">Data</span><span class="w"> </span><span class="nx">models</span><span class="w"> </span><span class="p">(</span><span class="nx">database</span><span class="w"> </span><span class="nx">tables</span><span class="p">)</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">tests</span><span class="p">.</span><span class="nx">py</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="nx">Unit</span><span class="w"> </span><span class="nx">tests</span>
+<span class="err">└──</span><span class="w"> </span><span class="nx">views</span><span class="p">.</span><span class="nx">py</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="nx">View</span><span class="w"> </span><span class="nx">functions</span><span class="o">/</span><span class="nx">classes</span>
+</code></pre></div>
+
+<p><strong>File Descriptions:</strong></p>
+<p><strong><code>models.py</code></strong>
+- Define database structure
+- Create Python classes that represent tables
+- Django ORM converts these to SQL</p>
+<p><strong><code>views.py</code></strong>
+- Business logic
+- Handle requests and return responses
+- Query models and render templates</p>
+<p><strong><code>admin.py</code></strong>
+- Register models for admin interface
+- Customize admin panel</p>
+<p><strong><code>tests.py</code></strong>
+- Write unit tests
+- Test your code automatically</p>
+<p><strong><code>migrations/</code></strong>
+- Tracks database schema changes
+- Version control for database</p>
+<h3 id="step-4-register-the-app">Step 4: Register the App<a class="headerlink" href="#step-4-register-the-app" title="Permanent link">&para;</a></h3>
+<p>Open <code>taskmanager/settings.py</code> and add your app to <code>INSTALLED_APPS</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tasks&#39;</span><span class="p">,</span>  <span class="c1"># Add your app here</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p><strong>Why register apps?</strong>
+- Django needs to know which apps are part of the project
+- Enables migrations, templates, static files for the app
+- Required for app functionality</p>
+<h3 id="step-5-apply-initial-migrations">Step 5: Apply Initial Migrations<a class="headerlink" href="#step-5-apply-initial-migrations" title="Permanent link">&para;</a></h3>
+<p>Django comes with built-in apps (auth, admin, etc.) that need database tables.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create database tables for built-in apps</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+
+<span class="c1"># Expected output:</span>
+<span class="c1"># Operations to perform:</span>
+<span class="c1">#   Apply all migrations: admin, auth, contenttypes, sessions</span>
+<span class="c1"># Running migrations:</span>
+<span class="c1">#   Applying contenttypes.0001_initial... OK</span>
+<span class="c1">#   Applying auth.0001_initial... OK</span>
+<span class="c1">#   ... (more migrations)</span>
+</code></pre></div>
+
+<p>This creates a <code>db.sqlite3</code> file - your database!</p>
+<h3 id="step-6-create-superuser">Step 6: Create Superuser<a class="headerlink" href="#step-6-create-superuser" title="Permanent link">&para;</a></h3>
+<p>Create an admin account to access Django's admin interface.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create superuser</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+
+<span class="c1"># You&#39;ll be prompted for:</span>
+<span class="c1"># Username: admin</span>
+<span class="c1"># Email: admin@example.com</span>
+<span class="c1"># Password: ******** (choose a strong password)</span>
+<span class="c1"># Password (again): ********</span>
+</code></pre></div>
+
+<h3 id="step-7-access-admin-interface">Step 7: Access Admin Interface<a class="headerlink" href="#step-7-access-admin-interface" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Start the server</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</code></pre></div>
+
+<p>Visit: <code>http://127.0.0.1:8000/admin/</code></p>
+<p>Login with your superuser credentials. You'll see the Django admin panel! 🎉</p>
+<hr />
+<h2 id="understanding-django-settings">Understanding Django Settings<a class="headerlink" href="#understanding-django-settings" title="Permanent link">&para;</a></h2>
+<p>Let's explore important settings in <code>settings.py</code>:</p>
+<h3 id="debug-mode">Debug Mode<a class="headerlink" href="#debug-mode" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Development: True, Production: False</span>
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+<p><strong>Never set DEBUG=True in production!</strong> It exposes sensitive information.</p>
+<h3 id="allowed-hosts">Allowed Hosts<a class="headerlink" href="#allowed-hosts" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Hosts allowed to serve the application</span>
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Empty for development</span>
+<span class="c1"># Production: ALLOWED_HOSTS = [&#39;yourdomain.com&#39;, &#39;www.yourdomain.com&#39;]</span>
+</code></pre></div>
+
+<h3 id="database-configuration">Database Configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s1">&#39;db.sqlite3&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Django supports multiple databases:
+- SQLite (default, good for development)
+- PostgreSQL (recommended for production)
+- MySQL
+- Oracle</p>
+<h3 id="static-files">Static Files<a class="headerlink" href="#static-files" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+<span class="c1"># For production, also set:</span>
+<span class="c1"># STATIC_ROOT = BASE_DIR / &#39;staticfiles&#39;</span>
+</code></pre></div>
+
+<h3 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.template.backends.django.DjangoTemplates&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DIRS&#39;</span><span class="p">:</span> <span class="p">[],</span>  <span class="c1"># Add custom template directories here</span>
+        <span class="s1">&#39;APP_DIRS&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Look for templates in app directories</span>
+        <span class="o">...</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<hr />
+<h2 id="django-management-commands">Django Management Commands<a class="headerlink" href="#django-management-commands" title="Permanent link">&para;</a></h2>
+<p>Essential commands you'll use frequently:</p>
+<h3 id="project-app-commands">Project &amp; App Commands<a class="headerlink" href="#project-app-commands" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create new project</span>
+django-admin<span class="w"> </span>startproject<span class="w"> </span>projectname
+
+<span class="c1"># Create new app</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>startapp<span class="w"> </span>appname
+</code></pre></div>
+
+<h3 id="server-commands">Server Commands<a class="headerlink" href="#server-commands" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Run development server</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+
+<span class="c1"># Run on different port</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">8080</span>
+
+<span class="c1"># Run on different host</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+</code></pre></div>
+
+<h3 id="database-commands">Database Commands<a class="headerlink" href="#database-commands" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create migration files</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations
+
+<span class="c1"># Apply migrations</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+
+<span class="c1"># Show migrations</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>showmigrations
+
+<span class="c1"># SQL for a migration</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>sqlmigrate<span class="w"> </span>appname<span class="w"> </span><span class="m">0001</span>
+</code></pre></div>
+
+<h3 id="user-management">User Management<a class="headerlink" href="#user-management" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create superuser</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+
+<span class="c1"># Change user password</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>changepassword<span class="w"> </span>username
+</code></pre></div>
+
+<h3 id="shell-testing">Shell &amp; Testing<a class="headerlink" href="#shell-testing" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Django shell (interactive Python)</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>shell
+
+<span class="c1"># Run tests</span>
+python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span>
+
+<span class="c1"># Run specific test</span>
+python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>appname.tests.TestClassName
+</code></pre></div>
+
+<h3 id="utility-commands">Utility Commands<a class="headerlink" href="#utility-commands" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Check for problems</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>check
+
+<span class="c1"># Collect static files (for production)</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic
+
+<span class="c1"># Clear database</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>flush
+</code></pre></div>
+
+<hr />
+<h2 id="project-structure-best-practices">Project Structure Best Practices<a class="headerlink" href="#project-structure-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="recommended-structure">Recommended Structure<a class="headerlink" href="#recommended-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>taskmanager/
+├── manage.py
+├── requirements.txt
+├── .gitignore
+├── README.md
+├── taskmanager/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── tasks/
+│   ├── migrations/
+│   ├── templates/
+│   │   └── tasks/
+│   ├── static/
+│   │   └── tasks/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   └── forms.py
+└── media/
+</code></pre></div>
+
+<h3 id="create-gitignore">Create .gitignore<a class="headerlink" href="#create-gitignore" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create .gitignore file</span>
+touch<span class="w"> </span>.gitignore
+</code></pre></div>
+
+<p>Add to <code>.gitignore</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Python</span>
+<span class="o">*</span><span class="p">.</span><span class="n">py</span><span class="o">[</span><span class="n">cod</span><span class="o">]</span>
+<span class="n">__pycache__</span><span class="o">/</span>
+<span class="o">*</span><span class="p">.</span><span class="n">so</span>
+<span class="o">*</span><span class="p">.</span><span class="n">egg</span>
+<span class="o">*</span><span class="p">.</span><span class="n">egg</span><span class="o">-</span><span class="n">info</span><span class="o">/</span>
+<span class="n">dist</span><span class="o">/</span>
+<span class="n">build</span><span class="o">/</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Django</span>
+<span class="o">*</span><span class="p">.</span><span class="nf">log</span>
+<span class="n">db</span><span class="p">.</span><span class="n">sqlite3</span>
+<span class="n">media</span><span class="o">/</span>
+<span class="n">staticfiles</span><span class="o">/</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Virtual</span><span class="w"> </span><span class="n">Environment</span>
+<span class="n">venv</span><span class="o">/</span>
+<span class="n">django_env</span><span class="o">/</span>
+<span class="n">env</span><span class="o">/</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">IDE</span>
+<span class="p">.</span><span class="n">vscode</span><span class="o">/</span>
+<span class="p">.</span><span class="n">idea</span><span class="o">/</span>
+<span class="o">*</span><span class="p">.</span><span class="n">swp</span>
+<span class="o">*</span><span class="p">.</span><span class="n">swo</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">OS</span>
+<span class="p">.</span><span class="n">DS_Store</span>
+<span class="n">Thumbs</span><span class="p">.</span><span class="n">db</span>
+</code></pre></div>
+
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>You've learned:</p>
+<p>✅ What Django is and why it's popular
+✅ Django's MVT architecture
+✅ How to set up a Python virtual environment
+✅ How to install Django
+✅ How to create a Django project and app
+✅ Django project structure
+✅ Essential Django management commands
+✅ How to access the admin interface</p>
+<h3 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h3>
+<p>👉 <strong>Continue to:</strong> <a href="02_FBV_Models_and_Database.html"><code>02_FBV_Models_and_Database.md</code></a></p>
+<p>In the next section, we'll:
+- Create database models
+- Understand Django ORM
+- Work with migrations
+- Query the database
+- Build the Task model for our project</p>
+<hr />
+<p><strong>Ready to dive deeper? Let's build something! 🚀</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+
+<nav class="md-footer__nav md-grid pill-navigation" aria-label="Footer navigation">
+  
+  
+  <a href="00_Index.html"
+     class="pill-btn pill-prev"
+     aria-label="Previous page">
+    <span class="pill-arrow">‹</span>
+    <span class="pill-text">PREVIOUS</span>
+  </a>
+  
+
+  
+  <a href="02_FBV_Models_and_Database.html"
+     class="pill-btn pill-next"
+     aria-label="Next page">
+    <span class="pill-text">NEXT</span>
+    <span class="pill-arrow">›</span>
+  </a>
+  
+
+</nav>
+
+
+
+
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner footer-custom">
+
+      <!-- Left -->
+      <div class="footer-col footer-left">
+        <strong>Django Training Guide</strong>
+      </div>
+
+      <!-- Center -->
+      <div class="footer-col footer-center">
+        <p>© 2026 Pragnakalp Techlabs</p>
+      </div>
+
+      <!-- Right -->
+      <div class="footer-col footer-right">
+        <p class="footer-heading">Contributors</p>
+        <div class="contributors">
+          <span class="contributor">Rahul</span>
+          <span class="contributor">Nikunj</span>
+          <span class="contributor">Neel</span>
+          <span class="contributor">Dhvanil</span>
+          <span class="contributor">Mansi</span>
+          <span class="contributor">Darshit</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.expand", "navigation.instant", "toc.integrate", "content.code.copy", "navigation.footer"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
