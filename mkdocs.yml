@@ -14,7 +14,7 @@ theme:
     - navigation.footer
 
 nav:
-  - Home: Index.md
+  - Home: index.md
   - Introduction & Setup: 01_Introduction_and_Setup.md
   - Models & Database: 02_FBV_Models_and_Database.md
   - Views & URLs: 03_FBV_Views_and_URLs.md
