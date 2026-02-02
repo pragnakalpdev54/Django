@@ -1,5 +1,21 @@
 # Part 1: Introduction & Setup
 
+## Django Version
+
+This documentation is written for **Django 4.2 LTS** (Long Term Support).
+
+- **Django Version**: 4.2.7 or higher
+- **Python Version**: 3.8 or higher
+- **Support**: Django 4.2 LTS is supported until April 2026
+
+**Why Django 4.2 LTS?**
+- Long-term support with security updates
+- Stable and production-ready
+- Wide community adoption
+- Compatible with modern Python versions
+
+---
+
 ## What is Django?
 
 Django is a high-level Python web framework that enables rapid development of secure and maintainable websites. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel.
@@ -131,16 +147,60 @@ A virtual environment isolates your project dependencies from other Python proje
 ```bash
 # Create a virtual environment named 'django_env'
 python -m venv django_env
-
-# Activate virtual environment
-# On Linux/Mac:
-source django_env/bin/activate
-
-# On Windows:
-django_env\Scripts\activate
-
-# You should see (django_env) in your terminal prompt
 ```
+
+#### Activate Virtual Environment (Choose Your OS)
+
+**On Linux/macOS:**
+```bash
+source django_env/bin/activate
+```
+
+**On Windows Command Prompt:**
+```cmd
+django_env\Scripts\activate
+```
+
+**On Windows PowerShell:**
+```powershell
+django_env\Scripts\Activate.ps1
+```
+
+**On Windows Git Bash:**
+```bash
+source django_env/Scripts/activate
+```
+
+**You should see (django_env) in your terminal prompt after activation.**
+
+#### Common Virtual Environment Issues
+
+**Issue 1: Windows PowerShell Execution Policy Error**
+```
+Error: "cannot be loaded because running scripts is disabled on this system"
+```
+**Solution:**
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**Issue 2: Permission Denied on Linux/macOS**
+```
+Error: "Permission denied"
+```
+**Solution:**
+```bash
+chmod +x django_env/bin/activate
+source django_env/bin/activate
+```
+
+**Issue 3: Command Not Found**
+```
+Error: "python: command not found"
+```
+**Solution:**
+- Try `python3` instead of `python`
+- Verify Python is installed: `python3 --version`
 
 **Why use virtual environments?**
 - Isolates project dependencies
@@ -590,6 +650,62 @@ Thumbs.db
 ## Summary
 
 You've learned:
+
+✅ What Django is and why it's popular
+✅ Django's MVT architecture
+✅ How to set up a Python virtual environment
+✅ How to install Django
+✅ How to create a Django project and app
+✅ Django project structure
+✅ Essential Django management commands
+
+### Common Mistakes to Avoid
+
+### Mistake 1: Forgetting to Activate Virtual Environment
+**Error**: Packages installed globally instead of in virtual environment
+**Symptom**: `ModuleNotFoundError` even after installing Django
+**Solution**: Always activate virtual environment before installing packages
+```bash
+source django_env/bin/activate  # Linux/Mac
+django_env\Scripts\activate     # Windows
+```
+
+### Mistake 2: Using Wrong Python Command
+**Error**: `python: command not found` or wrong Python version
+**Solution**: 
+- Check which command works: `python --version` or `python3 --version`
+- Use the correct one consistently throughout the project
+
+### Mistake 3: Not Adding App to INSTALLED_APPS
+**Error**: `django.core.exceptions.ImproperlyConfigured: No module named 'tasks'`
+**Solution**: Add your app to `INSTALLED_APPS` in `settings.py`
+```python
+INSTALLED_APPS = [
+    # ...
+    'tasks',  # Don't forget this!
+]
+```
+
+### Mistake 4: Running Server on Wrong Port
+**Error**: Port already in use
+**Solution**: Specify a different port
+```bash
+python manage.py runserver 8001
+```
+
+### Mistake 5: Not Running Migrations After Model Changes
+**Error**: `django.db.utils.OperationalError: no such table`
+**Solution**: Always run migrations after creating/modifying models
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+---
+
+**You're now ready to start building Django applications! 🚀**
+
+**Next:** Continue to [`02_FBV_Models_and_Database.md`](02_FBV_Models_and_Database.md) to learn about Django models and databases.
 
 ✅ What Django is and why it's popular
 ✅ Django's MVT architecture

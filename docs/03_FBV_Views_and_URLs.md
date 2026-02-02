@@ -1388,4 +1388,67 @@ In the next section, we'll:
 
 ---
 
+## Common Mistakes to Avoid
+
+### Mistake 1: Forgetting @login_required Decorator
+**Error**: Unauthenticated users can access protected views
+**Solution**: Always add `@login_required` to views that need authentication
+```python
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='login')
+def task_list(request):
+    # Your code
+```
+
+### Mistake 2: Not Checking User Ownership
+**Error**: Users can view/edit other users' data
+**Solution**: Always filter by `created_by=request.user`
+```python
+# Good - Secure
+task = get_object_or_404(Task, pk=pk, created_by=request.user)
+
+# Bad - Insecure
+task = get_object_or_404(Task, pk=pk)
+```
+
+### Mistake 3: Forgetting CSRF Token in Forms
+**Error**: `CSRF verification failed`
+**Solution**: Always include `{% csrf_token %}` in forms
+```django
+<form method="POST">
+    {% csrf_token %}  <!-- Don't forget this! -->
+    <!-- form fields -->
+</form>
+```
+
+### Mistake 4: Using GET for Data Modification
+**Error**: Data can be modified via URL links
+**Solution**: Use POST for create/update/delete operations
+```python
+# Good
+if request.method == 'POST':
+    # Modify data
+
+# Bad - Never do this
+if request.method == 'GET':
+    task.delete()  # Dangerous!
+```
+
+### Mistake 5: Not Validating Sort Parameters
+**Error**: SQL injection vulnerability
+**Solution**: Validate user input before using in queries
+```python
+# Good
+allowed_sort = ['title', 'created_at', 'priority']
+if sort_column in allowed_sort:
+    tasks = tasks.order_by(sort_column)
+
+# Bad
+sort_column = request.GET.get('sort')
+tasks = tasks.order_by(sort_column)  # Dangerous!
+```
+
+---
+
 **Views are ready! Let's build the frontend! 🎨**

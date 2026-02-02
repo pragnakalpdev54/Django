@@ -1458,4 +1458,62 @@ In the next section, we'll:
 
 ---
 
+## Common Mistakes to Avoid
+
+### Mistake 1: Using {{ variable|safe }} Without Sanitization
+**Error**: XSS (Cross-Site Scripting) vulnerability
+**Solution**: Only use `|safe` filter on trusted content
+```django
+{# Good - Auto-escaped #}
+{{ user_input }}
+
+{# Bad - Dangerous if user_input contains scripts #}
+{{ user_input|safe }}
+```
+
+### Mistake 2: Not Using {% load static %} for Static Files
+**Error**: Static files don't load
+**Solution**: Always load static tag at the top of templates
+```django
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+```
+
+### Mistake 3: Forgetting form.is_valid() Check
+**Error**: Invalid data saved to database
+**Solution**: Always validate forms before saving
+```python
+# Good
+if form.is_valid():
+    form.save()
+
+# Bad
+form.save()  # Skips validation!
+```
+
+### Mistake 4: Not Displaying Form Errors
+**Error**: Users don't know why form submission failed
+**Solution**: Always display form errors in templates
+```django
+{% if form.errors %}
+    <div class="alert alert-danger">
+        {{ form.errors }}
+    </div>
+{% endif %}
+```
+
+### Mistake 5: Using Wrong Template Tag Syntax
+**Error**: `TemplateSyntaxError`
+**Solution**: Remember the difference between `{{ }}` and `{% %}`
+```django
+{# Variables - use {{ }} #}
+{{ task.title }}
+
+{# Tags - use {% %} #}
+{% for task in tasks %}
+{% endfor %}
+```
+
+---
+
 **Templates and Forms are ready! Let's complete the project! 🎉**

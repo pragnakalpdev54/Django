@@ -19,8 +19,11 @@ nav:
   - Models & Database: 02_FBV_Models_and_Database.md
   - Views & URLs: 03_FBV_Views_and_URLs.md
   - Templates & Forms: 04_FBV_Templates_and_Forms.md
-  - Complete Project: 05_FBV_Complete_Project.md
-
+  - Complete Project with FBV: 05_FBV_Complete_Project.md
+  - Class-Based Views: 06_CBV_Introduction.md
+  - Generic Views: 07_CBV_Generic_Views.md
+  - Complete Project with CBV: 08_CBV_Complete_Project.md
+  
 markdown_extensions:
   - toc:
       permalink: true

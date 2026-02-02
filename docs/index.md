@@ -21,10 +21,6 @@ This comprehensive Django training is divided into multiple modules for easy lea
 - [`07_CBV_Generic_Views.md`](07_CBV_Generic_Views.md) - Generic views and mixins
 - [`08_CBV_Complete_Project.md`](08_CBV_Complete_Project.md) - Refactoring to Class-Based Views
 
-### **Part 4: Comparison & Best Practices**
-- [`09_FBV_vs_CBV_Comparison.md`](09_FBV_vs_CBV_Comparison.md) - Detailed comparison and when to use what
-- [`10_Best_Practices.md`](10_Best_Practices.md) - Production tips and best practices
-
 ---
 
 ## 🎯 Learning Path
@@ -33,12 +29,11 @@ This comprehensive Django training is divided into multiple modules for easy lea
 1. Start with Part 1 (Introduction & Setup)
 2. Follow Part 2 (Function-Based Views) - Build the complete project
 3. Move to Part 3 (Class-Based Views) - Refactor the same project
-4. Review Part 4 (Comparison & Best Practices)
 
 ### For Those with Basic Django Knowledge:
 1. Quick review of Part 1
 2. Focus on Part 2 and Part 3 - Compare both approaches
-3. Deep dive into Part 4 for advanced patterns
+3. Practice building projects with both methods
 
 ---
 
@@ -109,12 +104,11 @@ This allows you to see the **same project implemented in both ways** and underst
 - Method overriding
 - Advanced CBV patterns
 
-### Best Practices:
+### Advanced Concepts:
 - When to use FBV vs CBV
-- Code organization
+- Code organization and patterns
 - Security considerations
-- Performance optimization
-- Production deployment tips
+- Performance optimization techniques
 
 ---
 
@@ -125,8 +119,8 @@ You will be able to:
 - Choose between FBV and CBV based on requirements
 - Implement user authentication and authorization
 - Create responsive, user-friendly interfaces
-- Follow Django best practices
-- Deploy Django applications to production
+- Follow Django development best practices
+- Optimize Django applications for performance
 
 ---
 

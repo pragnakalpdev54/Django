@@ -859,4 +859,56 @@ In the next section, we'll:
 
 ---
 
+## Common Mistakes to Avoid
+
+### Mistake 1: Forgetting to Run Migrations
+**Error**: `django.db.utils.OperationalError: no such table: tasks_task`
+**Solution**: Always run migrations after creating/modifying models
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### Mistake 2: Circular Import Errors
+**Error**: `ImportError: cannot import name 'Task' from partially initialized module`
+**Solution**: Move imports inside functions or use `apps.get_model()`
+```python
+# Instead of importing at top
+def my_function():
+    from .models import Task  # Import inside function
+```
+
+### Mistake 3: Not Setting on_delete for ForeignKey
+**Error**: `TypeError: __init__() missing 1 required positional argument: 'on_delete'`
+**Solution**: Always specify on_delete behavior
+```python
+created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+```
+
+### Mistake 4: Using null=True on CharField/TextField
+**Error**: Two types of "no data" (NULL and empty string)
+**Solution**: Use `blank=True` only, not `null=True` for text fields
+```python
+# Good
+description = models.TextField(blank=True)
+
+# Bad
+description = models.TextField(null=True, blank=True)
+```
+
+### Mistake 5: Not Using select_related/prefetch_related
+**Error**: N+1 query problem (slow performance)
+**Solution**: Use select_related for ForeignKey, prefetch_related for ManyToMany
+```python
+# Bad - N+1 queries
+tasks = Task.objects.all()
+for task in tasks:
+    print(task.created_by.username)  # Extra query each time
+
+# Good - 1 query with JOIN
+tasks = Task.objects.select_related('created_by').all()
+```
+
+---
+
 **Your database is ready! Let's build the views! 🎯**
