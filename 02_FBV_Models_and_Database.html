@@ -802,6 +802,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes to Avoid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes to Avoid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mistake-1-forgetting-to-run-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 1: Forgetting to Run Migrations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-2-circular-import-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 2: Circular Import Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-3-not-setting-on_delete-for-foreignkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 3: Not Setting on_delete for ForeignKey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-4-using-nulltrue-on-charfieldtextfield" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 4: Using null=True on CharField/TextField
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-5-not-using-select_relatedprefetch_related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 5: Not Using select_related/prefetch_related
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -878,7 +950,88 @@
   <span class="md-ellipsis">
     
   
-    Complete Project
+    Complete Project with FBV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06_CBV_Introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class-Based Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07_CBV_Generic_Views.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08_CBV_Complete_Project.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project with CBV
   
 
     
@@ -1664,6 +1817,51 @@ python<span class="w"> </span>manage.py<span class="w"> </span>migrate
 - Configure URL routing
 - Pass data to templates
 - Implement CRUD operations</p>
+<hr />
+<h2 id="common-mistakes-to-avoid">Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Permanent link">&para;</a></h2>
+<h3 id="mistake-1-forgetting-to-run-migrations">Mistake 1: Forgetting to Run Migrations<a class="headerlink" href="#mistake-1-forgetting-to-run-migrations" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>django.db.utils.OperationalError: no such table: tasks_task</code>
+<strong>Solution</strong>: Always run migrations after creating/modifying models</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</code></pre></div>
+
+<h3 id="mistake-2-circular-import-errors">Mistake 2: Circular Import Errors<a class="headerlink" href="#mistake-2-circular-import-errors" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>ImportError: cannot import name 'Task' from partially initialized module</code>
+<strong>Solution</strong>: Move imports inside functions or use <code>apps.get_model()</code></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Instead of importing at top</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>  <span class="c1"># Import inside function</span>
+</code></pre></div>
+
+<h3 id="mistake-3-not-setting-on_delete-for-foreignkey">Mistake 3: Not Setting on_delete for ForeignKey<a class="headerlink" href="#mistake-3-not-setting-on_delete-for-foreignkey" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>TypeError: __init__() missing 1 required positional argument: 'on_delete'</code>
+<strong>Solution</strong>: Always specify on_delete behavior</p>
+<div class="codehilite"><pre><span></span><code><span class="n">created_by</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="mistake-4-using-nulltrue-on-charfieldtextfield">Mistake 4: Using null=True on CharField/TextField<a class="headerlink" href="#mistake-4-using-nulltrue-on-charfieldtextfield" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Two types of "no data" (NULL and empty string)
+<strong>Solution</strong>: Use <code>blank=True</code> only, not <code>null=True</code> for text fields</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good</span>
+<span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Bad</span>
+<span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="mistake-5-not-using-select_relatedprefetch_related">Mistake 5: Not Using select_related/prefetch_related<a class="headerlink" href="#mistake-5-not-using-select_relatedprefetch_related" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: N+1 query problem (slow performance)
+<strong>Solution</strong>: Use select_related for ForeignKey, prefetch_related for ManyToMany</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Bad - N+1 queries</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>  <span class="c1"># Extra query each time</span>
+
+<span class="c1"># Good - 1 query with JOIN</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;created_by&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+
 <hr />
 <p><strong>Your database is ready! Let's build the views! 🎯</strong></p>
 

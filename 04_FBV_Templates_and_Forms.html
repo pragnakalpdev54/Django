@@ -844,6 +844,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes to Avoid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes to Avoid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mistake-1-using-variablesafe-without-sanitization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 1: Using {{ variable|safe }} Without Sanitization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-2-not-using-load-static-for-static-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 2: Not Using {% load static %} for Static Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-3-forgetting-formis_valid-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 3: Forgetting form.is_valid() Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-4-not-displaying-form-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 4: Not Displaying Form Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-5-using-wrong-template-tag-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 5: Using Wrong Template Tag Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -866,7 +938,88 @@
   <span class="md-ellipsis">
     
   
-    Complete Project
+    Complete Project with FBV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06_CBV_Introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class-Based Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07_CBV_Generic_Views.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08_CBV_Complete_Project.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project with CBV
   
 
     
@@ -2248,6 +2401,57 @@
 - Add final touches
 - Test the application
 - Review the complete FBV implementation</p>
+<hr />
+<h2 id="common-mistakes-to-avoid">Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Permanent link">&para;</a></h2>
+<h3 id="mistake-1-using-variablesafe-without-sanitization">Mistake 1: Using {{ variable|safe }} Without Sanitization<a class="headerlink" href="#mistake-1-using-variablesafe-without-sanitization" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: XSS (Cross-Site Scripting) vulnerability
+<strong>Solution</strong>: Only use <code>|safe</code> filter on trusted content</p>
+<div class="codehilite"><pre><span></span><code><span class="c">{# Good - Auto-escaped #}</span>
+<span class="cp">{{</span> <span class="nv">user_input</span> <span class="cp">}}</span>
+
+<span class="c">{# Bad - Dangerous if user_input contains scripts #}</span>
+<span class="cp">{{</span> <span class="nv">user_input</span><span class="o">|</span><span class="nf">safe</span> <span class="cp">}}</span>
+</code></pre></div>
+
+<h3 id="mistake-2-not-using-load-static-for-static-files">Mistake 2: Not Using {% load static %} for Static Files<a class="headerlink" href="#mistake-2-not-using-load-static-for-static-files" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Static files don't load
+<strong>Solution</strong>: Always load static tag at the top of templates</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">{%</span> <span class="k">load</span> <span class="nv">static</span> <span class="cp">%}</span>
+<span class="x">&lt;link rel=&quot;stylesheet&quot; href=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;css/style.css&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;</span>
+</code></pre></div>
+
+<h3 id="mistake-3-forgetting-formis_valid-check">Mistake 3: Forgetting form.is_valid() Check<a class="headerlink" href="#mistake-3-forgetting-formis_valid-check" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Invalid data saved to database
+<strong>Solution</strong>: Always validate forms before saving</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good</span>
+<span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="c1"># Bad</span>
+<span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># Skips validation!</span>
+</code></pre></div>
+
+<h3 id="mistake-4-not-displaying-form-errors">Mistake 4: Not Displaying Form Errors<a class="headerlink" href="#mistake-4-not-displaying-form-errors" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Users don't know why form submission failed
+<strong>Solution</strong>: Always display form errors in templates</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">{%</span> <span class="k">if</span> <span class="nv">form.errors</span> <span class="cp">%}</span>
+<span class="x">    &lt;div class=&quot;alert alert-danger&quot;&gt;</span>
+<span class="x">        </span><span class="cp">{{</span> <span class="nv">form.errors</span> <span class="cp">}}</span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+</code></pre></div>
+
+<h3 id="mistake-5-using-wrong-template-tag-syntax">Mistake 5: Using Wrong Template Tag Syntax<a class="headerlink" href="#mistake-5-using-wrong-template-tag-syntax" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>TemplateSyntaxError</code>
+<strong>Solution</strong>: Remember the difference between <code>{{ }}</code> and <code>{% %}</code></p>
+<div class="codehilite"><pre><span></span><code><span class="c">{# Variables - use {{ }} #}</span>
+<span class="cp">{{</span> <span class="nv">task.title</span> <span class="cp">}}</span>
+
+<span class="c">{# Tags - use {% %} #}</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">task</span> <span class="k">in</span> <span class="nv">tasks</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+</code></pre></div>
+
 <hr />
 <p><strong>Templates and Forms are ready! Let's complete the project! 🎉</strong></p>
 

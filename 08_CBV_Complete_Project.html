@@ -1,0 +1,1830 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://pragnakalpdev54.github.io/Django/08_CBV_Complete_Project.html">
+      
+      
+        <link rel="prev" href="07_CBV_Generic_Views.html">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Complete Project with CBV - Django Training Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/footer.css">
+    
+      <link rel="stylesheet" href="assets/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="assets/stylesheets/sidebar.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#part-8-class-based-views-complete-project" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Django Training Guide" class="md-header__button md-logo" aria-label="Django Training Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Django Training Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Complete Project with CBV
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Django Training Guide" class="md-nav__button md-logo" aria-label="Django Training Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Django Training Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01_Introduction_and_Setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction & Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02_FBV_Models_and_Database.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models & Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03_FBV_Views_and_URLs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Views & URLs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04_FBV_Templates_and_Forms.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates & Forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05_FBV_Complete_Project.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project with FBV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06_CBV_Introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class-Based Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07_CBV_Generic_Views.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project with CBV
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="08_CBV_Complete_Project.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project with CBV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-code-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Code Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Code Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-environment-variables-env-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Environment Variables (.env) - Same as FBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-requirements-requirementstxt-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Requirements (requirements.txt) - Same as FBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-git-ignore-gitignore-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Git Ignore (.gitignore) - Same as FBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-models-tasksmodelspy-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Models (tasks/models.py) - Same as FBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-forms-tasksformspy-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Forms (tasks/forms.py) - Same as FBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-custom-mixins-tasksmixinspy-cbv-specific" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Custom Mixins (tasks/mixins.py) - CBV Specific
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-class-based-views-tasksviewspy-cbv-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Class-Based Views (tasks/views.py) - CBV Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-urls-tasksurlspy-cbv-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. URLs (tasks/urls.py) - CBV Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-main-urls-taskmanagerurlspy-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Main URLs (taskmanager/urls.py) - Same as FBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-settings-taskmanagersettingspy-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Settings (taskmanager/settings.py) - Same as FBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Templates (Same as FBV)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-files-same-as-fbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Files (Same as FBV)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cbv-vs-fbv-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CBV vs FBV Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CBV vs FBV Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-cbv-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits of CBV Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-cbv-shines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When CBV Shines
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-the-cbv-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing the CBV Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing the CBV Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-urls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test URLs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features to Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-we-accomplished" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What We Accomplished
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-cbv-concepts-demonstrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key CBV Concepts Demonstrated
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 What's Next?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes to Avoid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes to Avoid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mistake-1-mixing-fbv-and-cbv-patterns-incorrectly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 1: Mixing FBV and CBV Patterns Incorrectly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-2-not-using-mixins-for-common-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 2: Not Using Mixins for Common Functionality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-3-overcomplicating-simple-views-with-cbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 3: Overcomplicating Simple Views with CBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-4-not-understanding-when-methods-are-called" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 4: Not Understanding When Methods Are Called
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-5-forgetting-to-update-templates-when-switching-to-cbv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 5: Forgetting to Update Templates When Switching to CBV
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="part-8-class-based-views-complete-project">Part 8: Class-Based Views - Complete Project<a class="headerlink" href="#part-8-class-based-views-complete-project" title="Permanent link">&para;</a></h1>
+<h2 id="project-overview">Project Overview<a class="headerlink" href="#project-overview" title="Permanent link">&para;</a></h2>
+<p>We'll refactor the same <strong>Task Management System</strong> from Function-Based Views to Class-Based Views with:
+- ✅ HTML templates (Django Template Language)
+- ✅ AJAX for API requests (PATCH, DELETE methods)
+- ✅ PostgreSQL database
+- ✅ Soft delete functionality
+- ✅ RESTful API endpoints
+- ✅ Modern responsive UI
+- ✅ Same features as FBV version</p>
+<h3 id="complete-project-structure">Complete Project Structure<a class="headerlink" href="#complete-project-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">taskmanager</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">manage</span><span class="o">.</span><span class="n">py</span>
+<span class="err">├──</span><span class="w"> </span><span class="o">.</span><span class="n">env</span><span class="w">                          </span><span class="c1"># Environment variables</span>
+<span class="err">├──</span><span class="w"> </span><span class="o">.</span><span class="n">gitignore</span><span class="w">                    </span><span class="c1"># Git ignore file</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span><span class="w">              </span><span class="c1"># Python dependencies</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">README</span><span class="o">.</span><span class="n">md</span><span class="w">                     </span><span class="c1"># Project documentation</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">taskmanager</span><span class="o">/</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">settings</span><span class="o">.</span><span class="n">py</span><span class="w">              </span><span class="c1"># Django settings</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">urls</span><span class="o">.</span><span class="n">py</span><span class="w">                  </span><span class="c1"># Main URL configuration</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">wsgi</span><span class="o">.</span><span class="n">py</span><span class="w">                  </span><span class="c1"># WSGI config</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">asgi</span><span class="o">.</span><span class="n">py</span><span class="w">                  </span><span class="c1"># ASGI config</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">tasks</span><span class="o">/</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">admin</span><span class="o">.</span><span class="n">py</span><span class="w">                 </span><span class="c1"># Admin configuration</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">apps</span><span class="o">.</span><span class="n">py</span><span class="w">                  </span><span class="c1"># App configuration</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">models</span><span class="o">.</span><span class="n">py</span><span class="w">                </span><span class="c1"># Database models (same as FBV)</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">views</span><span class="o">.</span><span class="n">py</span><span class="w">                 </span><span class="c1"># Class-Based Views</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">urls</span><span class="o">.</span><span class="n">py</span><span class="w">                  </span><span class="c1"># App URL patterns</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">forms</span><span class="o">.</span><span class="n">py</span><span class="w">                 </span><span class="c1"># Form classes (same as FBV)</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">mixins</span><span class="o">.</span><span class="n">py</span><span class="w">                </span><span class="c1"># Custom CBV mixins</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">migrations</span><span class="o">/</span>
+<span class="w">    </span><span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+<span class="w">    </span><span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="mi">0001</span><span class="n">_initial</span><span class="o">.</span><span class="n">py</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="k">static</span><span class="o">/</span>
+<span class="w">    </span><span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">tasks</span><span class="o">/</span>
+<span class="w">    </span><span class="err">│</span><span class="w">       </span><span class="err">├──</span><span class="w"> </span><span class="n">css</span><span class="o">/</span>
+<span class="w">    </span><span class="err">│</span><span class="w">       </span><span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">custom</span><span class="o">.</span><span class="n">css</span><span class="w">   </span><span class="c1"># Custom styles (same as FBV)</span>
+<span class="w">    </span><span class="err">│</span><span class="w">       </span><span class="err">└──</span><span class="w"> </span><span class="n">js</span><span class="o">/</span>
+<span class="w">    </span><span class="err">│</span><span class="w">           </span><span class="err">└──</span><span class="w"> </span><span class="n">app</span><span class="o">.</span><span class="n">js</span><span class="w">       </span><span class="c1"># AJAX functions (same as FBV)</span>
+<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="n">templates</span><span class="o">/</span>
+<span class="w">        </span><span class="err">└──</span><span class="w"> </span><span class="n">tasks</span><span class="o">/</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">base</span><span class="o">.</span><span class="n">html</span><span class="w">                    </span><span class="c1"># Base template (same as FBV)</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">task_list</span><span class="o">.</span><span class="n">html</span><span class="w">              </span><span class="c1"># Task list with AJAX (same as FBV)</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">task_detail</span><span class="o">.</span><span class="n">html</span><span class="w">            </span><span class="c1"># Task detail (same as FBV)</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">task_form</span><span class="o">.</span><span class="n">html</span><span class="w">              </span><span class="c1"># Create/Update form (same as FBV)</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">task_confirm_delete</span><span class="o">.</span><span class="n">html</span><span class="w">    </span><span class="c1"># Delete confirmation (same as FBV)</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">task_trash</span><span class="o">.</span><span class="n">html</span><span class="w">             </span><span class="c1"># Trash/Recycle bin (same as FBV)</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">task_restore_confirm</span><span class="o">.</span><span class="n">html</span><span class="w">   </span><span class="c1"># Restore confirmation (same as FBV)</span>
+<span class="w">            </span><span class="err">├──</span><span class="w"> </span><span class="n">login</span><span class="o">.</span><span class="n">html</span><span class="w">                  </span><span class="c1"># Login page (same as FBV)</span>
+<span class="w">            </span><span class="err">└──</span><span class="w"> </span><span class="n">register</span><span class="o">.</span><span class="n">html</span><span class="w">               </span><span class="c1"># Registration page (same as FBV)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="complete-code-files">Complete Code Files<a class="headerlink" href="#complete-code-files" title="Permanent link">&para;</a></h2>
+<h3 id="1-environment-variables-env-same-as-fbv">1. Environment Variables (<code>.env</code>) - Same as FBV<a class="headerlink" href="#1-environment-variables-env-same-as-fbv" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="gh">#</span> Database Configuration
+DB_NAME=taskmanager_db
+DB_USER=taskmanager_user
+DB_PASSWORD=your_secure_password_here
+DB_HOST=localhost
+DB_PORT=5432
+
+<span class="gh">#</span> Django Settings
+SECRET_KEY=your-secret-key-here-generate-new-one
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+</code></pre></div>
+
+<h3 id="2-requirements-requirementstxt-same-as-fbv">2. Requirements (<code>requirements.txt</code>) - Same as FBV<a class="headerlink" href="#2-requirements-requirementstxt-same-as-fbv" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>Django==4.2.7
+psycopg2-binary==2.9.9
+python-decouple==3.8
+Pillow==10.1.0
+</code></pre></div>
+
+<h3 id="3-git-ignore-gitignore-same-as-fbv">3. Git Ignore (<code>.gitignore</code>) - Same as FBV<a class="headerlink" href="#3-git-ignore-gitignore-same-as-fbv" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Python</span>
+<span class="n">__pycache__</span><span class="o">/</span>
+<span class="o">*</span><span class="p">.</span><span class="n">py</span><span class="o">[</span><span class="n">cod</span><span class="o">]</span>
+<span class="o">*</span><span class="err">$</span><span class="n">py</span><span class="p">.</span><span class="k">class</span>
+<span class="o">*</span><span class="p">.</span><span class="n">so</span>
+<span class="p">.</span><span class="n">Python</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Django</span>
+<span class="o">*</span><span class="p">.</span><span class="nf">log</span>
+<span class="n">local_settings</span><span class="p">.</span><span class="n">py</span>
+<span class="n">db</span><span class="p">.</span><span class="n">sqlite3</span>
+<span class="n">db</span><span class="p">.</span><span class="n">sqlite3</span><span class="o">-</span><span class="n">journal</span>
+<span class="n">media</span><span class="o">/</span>
+<span class="n">staticfiles</span><span class="o">/</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Environment</span>
+<span class="p">.</span><span class="n">env</span>
+<span class="n">venv</span><span class="o">/</span>
+<span class="n">env</span><span class="o">/</span>
+<span class="n">ENV</span><span class="o">/</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">IDE</span>
+<span class="p">.</span><span class="n">vscode</span><span class="o">/</span>
+<span class="p">.</span><span class="n">idea</span><span class="o">/</span>
+<span class="o">*</span><span class="p">.</span><span class="n">swp</span>
+<span class="o">*</span><span class="p">.</span><span class="n">swo</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">OS</span>
+<span class="p">.</span><span class="n">DS_Store</span>
+<span class="n">Thumbs</span><span class="p">.</span><span class="n">db</span>
+</code></pre></div>
+
+<h3 id="4-models-tasksmodelspy-same-as-fbv">4. Models (<code>tasks/models.py</code>) - Same as FBV<a class="headerlink" href="#4-models-tasksmodelspy-same-as-fbv" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">timezone</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Task</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">PRIORITY_CHOICES</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;high&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">STATUS_CHOICES</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;pending&#39;</span><span class="p">,</span> <span class="s1">&#39;Pending&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;in_progress&#39;</span><span class="p">,</span> <span class="s1">&#39;In Progress&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;completed&#39;</span><span class="p">,</span> <span class="s1">&#39;Completed&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">priority</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">PRIORITY_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">STATUS_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;pending&#39;</span><span class="p">)</span>
+    <span class="n">due_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">is_completed</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Relationships</span>
+    <span class="n">created_by</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;tasks&#39;</span><span class="p">)</span>
+    <span class="n">parent_task</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;subtasks&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Timestamps</span>
+    <span class="n">created_at</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">updated_at</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Soft delete</span>
+    <span class="n">is_deleted</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">deleted_at</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">deleted_by</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-created_at&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Auto-update is_completed based on status</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;completed&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_completed</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_completed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="5-forms-tasksformspy-same-as-fbv">5. Forms (<code>tasks/forms.py</code>) - Same as FBV<a class="headerlink" href="#5-forms-tasksformspy-same-as-fbv" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="n">due_date</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">DateInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span><span class="p">}),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;due_date&#39;</span><span class="p">]</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
+            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}),</span>
+            <span class="s1">&#39;priority&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<h3 id="6-custom-mixins-tasksmixinspy-cbv-specific">6. Custom Mixins (<code>tasks/mixins.py</code>) - CBV Specific<a class="headerlink" href="#6-custom-mixins-tasksmixinspy-cbv-specific" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginRequiredMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">messages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">Http404</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserTaskMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mixin to filter tasks by current user&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">is_deleted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SuccessMessageMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mixin to add success messages&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_success_message</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_success_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;created&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;updated&quot;</span><span class="si">}</span><span class="s1"> successfully!&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;Operation completed successfully!&#39;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserIsOwnerMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mixin to ensure user owns the object&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">created_by</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Http404</span><span class="p">(</span><span class="s2">&quot;You don&#39;t have permission to access this task.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SoftDeleteMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mixin for soft delete functionality&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
+        <span class="n">task_title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">title</span>
+
+        <span class="c1"># Soft delete</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">is_deleted</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">deleted_at</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">deleted_by</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Task &quot;</span><span class="si">{</span><span class="n">task_title</span><span class="si">}</span><span class="s1">&quot; moved to trash.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="7-class-based-views-tasksviewspy-cbv-implementation">7. Class-Based Views (<code>tasks/views.py</code>) - CBV Implementation<a class="headerlink" href="#7-class-based-views-tasksviewspy-cbv-implementation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">logout</span><span class="p">,</span> <span class="n">authenticate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserCreationForm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">messages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.views.generic</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ListView</span><span class="p">,</span> <span class="n">DetailView</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">,</span>
+    <span class="n">TemplateView</span><span class="p">,</span> <span class="n">View</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginRequiredMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">reverse_lazy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponse</span><span class="p">,</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.views.decorators.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">require_http_methods</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.utils.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">method_decorator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.db.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Q</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">timezone</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskForm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserTaskMixin</span><span class="p">,</span> <span class="n">SuccessMessageMixin</span><span class="p">,</span> <span class="n">UserIsOwnerMixin</span><span class="p">,</span> <span class="n">SoftDeleteMixin</span>
+
+<span class="c1"># Authentication Views</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserRegisterView</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">UserCreationForm</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/register.html&#39;</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;task_list&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Account created for </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserLoginView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/login.html&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+
+        <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+            <span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;Login successful!&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;task_list&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;Invalid username or password!&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;tasks/login.html&#39;</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserLogoutView</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">logout</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;You have been logged out.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;task_list&#39;</span><span class="p">)</span>
+
+<span class="c1"># Task Views</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskListView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserTaskMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/task_list.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;tasks&#39;</span>
+    <span class="n">paginate_by</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+
+        <span class="c1"># Search functionality</span>
+        <span class="n">search</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">search</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">Q</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="n">search</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">description__icontains</span><span class="o">=</span><span class="n">search</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Filter by status</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">)</span>
+
+        <span class="c1"># Filter by priority</span>
+        <span class="n">priority</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;priority&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">priority</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">priority</span><span class="o">=</span><span class="n">priority</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">queryset</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Add filter values for form</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;search_query&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;status_filter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;priority_filter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Add statistics</span>
+        <span class="n">all_tasks</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">is_deleted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+            <span class="s1">&#39;pending&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;pending&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+            <span class="s1">&#39;in_progress&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;in_progress&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+            <span class="s1">&#39;completed&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;completed&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">context</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskDetailView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserTaskMixin</span><span class="p">,</span> <span class="n">UserIsOwnerMixin</span><span class="p">,</span> <span class="n">DetailView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/task_detail.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;task&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Add related tasks</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;related_tasks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">created_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">priority</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">priority</span><span class="p">,</span>
+            <span class="n">is_deleted</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">pk</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="c1"># Add subtasks</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;subtasks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">subtasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_deleted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">context</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">SuccessMessageMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">TaskForm</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/task_form.html&#39;</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;task_list&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">created_by</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Create&#39;</span>
+        <span class="k">return</span> <span class="n">context</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskUpdateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserTaskMixin</span><span class="p">,</span> <span class="n">UserIsOwnerMixin</span><span class="p">,</span> <span class="n">SuccessMessageMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">TaskForm</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/task_form.html&#39;</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;task_list&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Update&#39;</span>
+        <span class="k">return</span> <span class="n">context</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskDeleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserTaskMixin</span><span class="p">,</span> <span class="n">UserIsOwnerMixin</span><span class="p">,</span> <span class="n">SoftDeleteMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/task_confirm_delete.html&#39;</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;task_list&#39;</span><span class="p">)</span>
+
+<span class="c1"># Trash/Restore Views</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskTrashView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/task_trash.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;tasks&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">created_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">is_deleted</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-deleted_at&#39;</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskRestoreView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">View</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">,</span> <span class="n">created_by</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">is_deleted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">task</span><span class="o">.</span><span class="n">is_deleted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">deleted_at</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">deleted_by</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Task &quot;</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s1">&quot; restored successfully!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;task_trash&#39;</span><span class="p">)</span>
+
+<span class="c1"># AJAX Views</span>
+<span class="nd">@method_decorator</span><span class="p">(</span><span class="n">require_http_methods</span><span class="p">([</span><span class="s2">&quot;PATCH&quot;</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dispatch&quot;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskToggleCompleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserTaskMixin</span><span class="p">,</span> <span class="n">View</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">,</span> <span class="n">created_by</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;completed&#39;</span><span class="p">:</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;pending&#39;</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">is_completed</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Task marked as pending&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;completed&#39;</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">is_completed</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Task marked as completed&#39;</span>
+
+        <span class="n">task</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Accept&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;application/json&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span>
+                <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;success&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
+                <span class="s1">&#39;task_status&#39;</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">status</span><span class="p">,</span>
+                <span class="s1">&#39;is_completed&#39;</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">is_completed</span>
+            <span class="p">})</span>
+
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;task_list&#39;</span><span class="p">)</span>
+
+<span class="nd">@method_decorator</span><span class="p">(</span><span class="n">require_http_methods</span><span class="p">([</span><span class="s2">&quot;DELETE&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dispatch&quot;</span><span class="p">))</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskPermanentDeleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">View</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">,</span> <span class="n">created_by</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">is_deleted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">task_title</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">title</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Accept&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;application/json&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span>
+                <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;success&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Task &quot;</span><span class="si">{</span><span class="n">task_title</span><span class="si">}</span><span class="s1">&quot; permanently deleted&#39;</span>
+            <span class="p">})</span>
+
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Task &quot;</span><span class="si">{</span><span class="n">task_title</span><span class="si">}</span><span class="s1">&quot; permanently deleted!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;task_trash&#39;</span><span class="p">)</span>
+
+<span class="c1"># Dashboard View</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DashboardView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tasks/dashboard.html&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+
+        <span class="c1"># Statistics</span>
+        <span class="n">all_tasks</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_by</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">is_deleted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;total_tasks&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+            <span class="s1">&#39;completed_tasks&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_completed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+            <span class="s1">&#39;pending_tasks&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_completed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+            <span class="s1">&#39;high_priority_tasks&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">priority</span><span class="o">=</span><span class="s1">&#39;high&#39;</span><span class="p">,</span> <span class="n">is_completed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+            <span class="s1">&#39;overdue_tasks&#39;</span><span class="p">:</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">due_date__lt</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span>
+                <span class="n">is_completed</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Recent tasks</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;recent_tasks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="c1"># Tasks due soon</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;upcoming_tasks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">due_date__lte</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span> <span class="o">+</span> <span class="n">timezone</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span>
+            <span class="n">is_completed</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;due_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">context</span>
+</code></pre></div>
+
+<h3 id="8-urls-tasksurlspy-cbv-version">8. URLs (<code>tasks/urls.py</code>) - CBV Version<a class="headerlink" href="#8-urls-tasksurlspy-cbv-version" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Authentication</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;register/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">UserRegisterView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;register&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;login/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">UserLoginView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;login&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;logout/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">UserLogoutView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;logout&#39;</span><span class="p">),</span>
+
+    <span class="c1"># Dashboard</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;dashboard/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">DashboardView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dashboard&#39;</span><span class="p">),</span>
+
+    <span class="c1"># Task CRUD</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskListView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_list&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;task/&lt;int:pk&gt;/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskDetailView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_detail&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;task/create/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskCreateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_create&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;task/&lt;int:pk&gt;/update/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskUpdateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_update&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;task/&lt;int:pk&gt;/delete/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskDeleteView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_delete&#39;</span><span class="p">),</span>
+
+    <span class="c1"># AJAX endpoints</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;task/&lt;int:pk&gt;/toggle/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskToggleCompleteView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_toggle&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;task/&lt;int:pk&gt;/permanent-delete/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskPermanentDeleteView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_permanent_delete&#39;</span><span class="p">),</span>
+
+    <span class="c1"># Trash/Restore</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;trash/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskTrashView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_trash&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;task/&lt;int:pk&gt;/restore/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">TaskRestoreView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_restore&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<h3 id="9-main-urls-taskmanagerurlspy-same-as-fbv">9. Main URLs (<code>taskmanager/urls.py</code>) - Same as FBV<a class="headerlink" href="#9-main-urls-taskmanagerurlspy-same-as-fbv" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;tasks.urls&#39;</span><span class="p">)),</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<h3 id="10-settings-taskmanagersettingspy-same-as-fbv">10. Settings (<code>taskmanager/settings.py</code>) - Same as FBV<a class="headerlink" href="#10-settings-taskmanagersettingspy-same-as-fbv" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decouple</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+
+<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;ALLOWED_HOSTS&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;localhost,127.0.0.1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tasks&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django.middleware.security.SecurityMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions.middleware.SessionMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.common.CommonMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.csrf.CsrfViewMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages.middleware.MessageMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">ROOT_URLCONF</span> <span class="o">=</span> <span class="s1">&#39;taskmanager.urls&#39;</span>
+
+<span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.template.backends.django.DjangoTemplates&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DIRS&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;APP_DIRS&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;context_processors&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s1">&#39;django.template.context_processors.debug&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.request&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.contrib.auth.context_processors.auth&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.contrib.messages.context_processors.messages&#39;</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">WSGI_APPLICATION</span> <span class="o">=</span> <span class="s1">&#39;taskmanager.wsgi.application&#39;</span>
+
+<span class="c1"># Database</span>
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_PORT&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;5432&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Password validation</span>
+<span class="n">AUTH_PASSWORD_VALIDATORS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.UserAttributeSimilarityValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.MinimumLengthValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.CommonPasswordValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.NumericPasswordValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># Internationalization</span>
+<span class="n">LANGUAGE_CODE</span> <span class="o">=</span> <span class="s1">&#39;en-us&#39;</span>
+<span class="n">TIME_ZONE</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span>
+<span class="n">USE_I18N</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">USE_L10N</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">USE_TZ</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Static files</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># Media files</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/&#39;</span>
+<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
+
+<span class="c1"># Login URLs</span>
+<span class="n">LOGIN_URL</span> <span class="o">=</span> <span class="s1">&#39;login&#39;</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;task_list&#39;</span>
+<span class="n">LOGOUT_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;task_list&#39;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="templates-same-as-fbv">Templates (Same as FBV)<a class="headerlink" href="#templates-same-as-fbv" title="Permanent link">&para;</a></h2>
+<p>All templates remain exactly the same as the FBV version:
+- <code>base.html</code>
+- <code>task_list.html</code> (with AJAX)
+- <code>task_detail.html</code>
+- <code>task_form.html</code>
+- <code>task_confirm_delete.html</code>
+- <code>task_trash.html</code>
+- <code>task_restore_confirm.html</code>
+- <code>login.html</code>
+- <code>register.html</code></p>
+<hr />
+<h2 id="static-files-same-as-fbv">Static Files (Same as FBV)<a class="headerlink" href="#static-files-same-as-fbv" title="Permanent link">&para;</a></h2>
+<p>All static files remain exactly the same as the FBV version:
+- <code>static/tasks/css/custom.css</code>
+- <code>static/tasks/js/app.js</code> (AJAX functions)</p>
+<hr />
+<h2 id="cbv-vs-fbv-comparison">CBV vs FBV Comparison<a class="headerlink" href="#cbv-vs-fbv-comparison" title="Permanent link">&para;</a></h2>
+<h3 id="code-metrics">Code Metrics<a class="headerlink" href="#code-metrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>FBV Lines</th>
+<th>CBV Lines</th>
+<th>Reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task CRUD</td>
+<td>120</td>
+<td>85</td>
+<td>29%</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>45</td>
+<td>35</td>
+<td>22%</td>
+</tr>
+<tr>
+<td>AJAX endpoints</td>
+<td>30</td>
+<td>25</td>
+<td>17%</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>195</strong></td>
+<td><strong>145</strong></td>
+<td><strong>26%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="benefits-of-cbv-implementation">Benefits of CBV Implementation<a class="headerlink" href="#benefits-of-cbv-implementation" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Code Reusability</strong>: Mixins can be reused across views
+✅ <strong>Better Organization</strong>: Related functionality grouped together
+✅ <strong>Built-in Features</strong>: Pagination, filtering, etc. handled automatically
+✅ <strong>Easier Testing</strong>: Each method can be tested independently
+✅ <strong>Consistent Patterns</strong>: Standard Django conventions
+✅ <strong>Extensibility</strong>: Easy to add new functionality</p>
+<h3 id="when-cbv-shines">When CBV Shines<a class="headerlink" href="#when-cbv-shines" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Complex CRUD operations</strong> with multiple HTTP methods</li>
+<li><strong>Reusable functionality</strong> across different views</li>
+<li><strong>Projects requiring pagination</strong>, filtering, and sorting</li>
+<li><strong>Applications with permission-based access</strong></li>
+<li><strong>Large codebases</strong> where organization matters</li>
+</ul>
+<hr />
+<h2 id="testing-the-cbv-implementation">Testing the CBV Implementation<a class="headerlink" href="#testing-the-cbv-implementation" title="Permanent link">&para;</a></h2>
+<h3 id="setup-commands">Setup Commands<a class="headerlink" href="#setup-commands" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># On Windows: venv\Scripts\activate</span>
+
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># Database migrations</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+
+<span class="c1"># Create superuser</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+
+<span class="c1"># Run server</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</code></pre></div>
+
+<h3 id="test-urls">Test URLs<a class="headerlink" href="#test-urls" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Dashboard</strong>: <code>http://127.0.0.1:8000/dashboard/</code></li>
+<li><strong>Task List</strong>: <code>http://127.0.0.1:8000/</code></li>
+<li><strong>Create Task</strong>: <code>http://127.0.0.1:8000/task/create/</code></li>
+<li><strong>Register</strong>: <code>http://127.0.0.1:8000/register/</code></li>
+<li><strong>Login</strong>: <code>http://127.0.0.1:8000/login/</code></li>
+</ul>
+<h3 id="features-to-test">Features to Test<a class="headerlink" href="#features-to-test" title="Permanent link">&para;</a></h3>
+<ol>
+<li>✅ User registration and login</li>
+<li>✅ Task CRUD operations</li>
+<li>✅ AJAX toggle complete</li>
+<li>✅ AJAX delete</li>
+<li>✅ Search and filtering</li>
+<li>✅ Pagination</li>
+<li>✅ Soft delete and trash</li>
+<li>✅ Task restore</li>
+<li>✅ Dashboard statistics</li>
+</ol>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>You've successfully refactored the Task Management System from Function-Based Views to Class-Based Views!</p>
+<h3 id="what-we-accomplished">What We Accomplished<a class="headerlink" href="#what-we-accomplished" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Same Functionality</strong>: All features from FBV version work identically
+✅ <strong>Cleaner Code</strong>: 26% reduction in code lines
+✅ <strong>Better Organization</strong>: Related functionality grouped logically
+✅ <strong>Reusable Components</strong>: Custom mixins for common patterns
+✅ <strong>Maintainable Structure</strong>: Easier to extend and modify</p>
+<h3 id="key-cbv-concepts-demonstrated">Key CBV Concepts Demonstrated<a class="headerlink" href="#key-cbv-concepts-demonstrated" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ListView</strong> for task listing with pagination and filtering</li>
+<li><strong>DetailView</strong> for individual task display</li>
+<li><strong>CreateView/UpdateView</strong> for form handling</li>
+<li><strong>DeleteView</strong> with soft delete functionality</li>
+<li><strong>Custom Mixins</strong> for reusable functionality</li>
+<li><strong>View</strong> for custom AJAX endpoints</li>
+<li><strong>TemplateView</strong> for dashboard</li>
+</ul>
+<hr />
+<p><strong>You now have the same complete Task Management System in both FBV and CBV! 🎉</strong></p>
+<h3 id="whats-next">🎯 What's Next?<a class="headerlink" href="#whats-next" title="Permanent link">&para;</a></h3>
+<p>Congratulations! You've successfully completed the Django Junior Training. You now have:</p>
+<p>✅ <strong>Complete understanding</strong> of both FBV and CBV approaches
+✅ <strong>Real project experience</strong> with the Task Management System
+✅ <strong>Ability to choose</strong> the right approach for your projects
+✅ <strong>Foundation</strong> for building advanced Django applications</p>
+<hr />
+<h2 id="common-mistakes-to-avoid">Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Permanent link">&para;</a></h2>
+<h3 id="mistake-1-mixing-fbv-and-cbv-patterns-incorrectly">Mistake 1: Mixing FBV and CBV Patterns Incorrectly<a class="headerlink" href="#mistake-1-mixing-fbv-and-cbv-patterns-incorrectly" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Confusion about which pattern to use
+<strong>Solution</strong>: Be consistent within related views</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good - All CRUD operations use CBV</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskCreateView</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskUpdateView</span><span class="p">(</span><span class="n">UpdateView</span><span class="p">):</span> <span class="k">pass</span>
+
+<span class="c1"># Acceptable - Mix based on complexity</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span> <span class="k">pass</span>  <span class="c1"># Simple CRUD</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">complex_report</span><span class="p">(</span><span class="n">request</span><span class="p">):</span> <span class="k">pass</span>   <span class="c1"># Custom logic</span>
+</code></pre></div>
+
+<h3 id="mistake-2-not-using-mixins-for-common-functionality">Mistake 2: Not Using Mixins for Common Functionality<a class="headerlink" href="#mistake-2-not-using-mixins-for-common-functionality" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Duplicating code across multiple views
+<strong>Solution</strong>: Create reusable mixins</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good - Reusable mixin</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserFilterMixin</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskListView</span><span class="p">(</span><span class="n">UserFilterMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ProjectListView</span><span class="p">(</span><span class="n">UserFilterMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Project</span>
+</code></pre></div>
+
+<h3 id="mistake-3-overcomplicating-simple-views-with-cbv">Mistake 3: Overcomplicating Simple Views with CBV<a class="headerlink" href="#mistake-3-overcomplicating-simple-views-with-cbv" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Using CBV when FBV would be simpler
+<strong>Solution</strong>: Use FBV for unique, simple logic</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good - Simple FBV for unique logic</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">about</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;about.html&#39;</span><span class="p">)</span>
+
+<span class="c1"># Overkill - CBV for simple static page</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AboutView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about.html&#39;</span>
+</code></pre></div>
+
+<h3 id="mistake-4-not-understanding-when-methods-are-called">Mistake 4: Not Understanding When Methods Are Called<a class="headerlink" href="#mistake-4-not-understanding-when-methods-are-called" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Putting logic in wrong method
+<strong>Solution</strong>: Understand CBV method flow</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># dispatch() → get_queryset() → get_object() → get_context_data()</span>
+
+<span class="c1"># Good - Filter in get_queryset()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># Bad - Filter in get_context_data()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>  <span class="c1"># Wrong place!</span>
+</code></pre></div>
+
+<h3 id="mistake-5-forgetting-to-update-templates-when-switching-to-cbv">Mistake 5: Forgetting to Update Templates When Switching to CBV<a class="headerlink" href="#mistake-5-forgetting-to-update-templates-when-switching-to-cbv" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Templates expect FBV context variable names
+<strong>Solution</strong>: Update context_object_name or template variables</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># In CBV</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;tasks&#39;</span>  <span class="c1"># Match FBV template expectations</span>
+</code></pre></div>
+
+<hr />
+<p><strong>Happy Coding! 🚀</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+
+<nav class="md-footer__nav md-grid pill-navigation" aria-label="Footer navigation">
+  
+  
+  <a href="07_CBV_Generic_Views.html"
+     class="pill-btn pill-prev"
+     aria-label="Previous page">
+    <span class="pill-arrow">‹</span>
+    <span class="pill-text">PREVIOUS</span>
+  </a>
+  
+
+  
+
+</nav>
+
+
+
+
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner footer-custom">
+
+      <!-- Left -->
+      <div class="footer-col footer-left">
+        <strong>Django Training Guide</strong>
+      </div>
+
+      <!-- Center -->
+      <div class="footer-col footer-center">
+        <p>© 2026 Pragnakalp Techlabs</p>
+      </div>
+
+      <!-- Right -->
+      <div class="footer-col footer-right">
+        <p class="footer-heading">Contributors</p>
+        <div class="contributors">
+          <span class="contributor">Rahul</span>
+          <span class="contributor">Nikunj</span>
+          <span class="contributor">Neel</span>
+          <span class="contributor">Dhvanil</span>
+          <span class="contributor">Mansi</span>
+          <span class="contributor">Darshit</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.expand", "navigation.instant", "toc.integrate", "content.code.copy", "navigation.footer"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -293,6 +293,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#django-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Django Version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-is-django" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -412,6 +423,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Create Virtual Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activate-virtual-environment-choose-your-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activate Virtual Environment (Choose Your OS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-virtual-environment-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Virtual Environment Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -765,6 +804,72 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes to Avoid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-1-forgetting-to-activate-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 1: Forgetting to Activate Virtual Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-2-using-wrong-python-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 2: Using Wrong Python Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-3-not-adding-app-to-installed_apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 3: Not Adding App to INSTALLED_APPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-4-running-server-on-wrong-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 4: Running Server on Wrong Port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-5-not-running-migrations-after-model-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 5: Not Running Migrations After Model Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -883,7 +988,88 @@
   <span class="md-ellipsis">
     
   
-    Complete Project
+    Complete Project with FBV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06_CBV_Introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class-Based Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07_CBV_Generic_Views.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08_CBV_Complete_Project.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project with CBV
   
 
     
@@ -914,6 +1100,19 @@
 
 
 <h1 id="part-1-introduction-setup">Part 1: Introduction &amp; Setup<a class="headerlink" href="#part-1-introduction-setup" title="Permanent link">&para;</a></h1>
+<h2 id="django-version">Django Version<a class="headerlink" href="#django-version" title="Permanent link">&para;</a></h2>
+<p>This documentation is written for <strong>Django 4.2 LTS</strong> (Long Term Support).</p>
+<ul>
+<li><strong>Django Version</strong>: 4.2.7 or higher</li>
+<li><strong>Python Version</strong>: 3.8 or higher</li>
+<li><strong>Support</strong>: Django 4.2 LTS is supported until April 2026</li>
+</ul>
+<p><strong>Why Django 4.2 LTS?</strong>
+- Long-term support with security updates
+- Stable and production-ready
+- Wide community adoption
+- Compatible with modern Python versions</p>
+<hr />
 <h2 id="what-is-django">What is Django?<a class="headerlink" href="#what-is-django" title="Permanent link">&para;</a></h2>
 <p>Django is a high-level Python web framework that enables rapid development of secure and maintainable websites. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel.</p>
 <h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
@@ -1022,17 +1221,51 @@ mkdir<span class="w"> </span>django_projects
 <p>A virtual environment isolates your project dependencies from other Python projects.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Create a virtual environment named &#39;django_env&#39;</span>
 python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>django_env
-
-<span class="c1"># Activate virtual environment</span>
-<span class="c1"># On Linux/Mac:</span>
-<span class="nb">source</span><span class="w"> </span>django_env/bin/activate
-
-<span class="c1"># On Windows:</span>
-django_env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
-
-<span class="c1"># You should see (django_env) in your terminal prompt</span>
 </code></pre></div>
 
+<h4 id="activate-virtual-environment-choose-your-os">Activate Virtual Environment (Choose Your OS)<a class="headerlink" href="#activate-virtual-environment-choose-your-os" title="Permanent link">&para;</a></h4>
+<p><strong>On Linux/macOS:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>django_env/bin/activate
+</code></pre></div>
+
+<p><strong>On Windows Command Prompt:</strong></p>
+<div class="codehilite"><pre><span></span><code>django_env\Scripts\activate
+</code></pre></div>
+
+<p><strong>On Windows PowerShell:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">django_env</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+
+<p><strong>On Windows Git Bash:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>django_env/Scripts/activate
+</code></pre></div>
+
+<p><strong>You should see (django_env) in your terminal prompt after activation.</strong></p>
+<h4 id="common-virtual-environment-issues">Common Virtual Environment Issues<a class="headerlink" href="#common-virtual-environment-issues" title="Permanent link">&para;</a></h4>
+<p><strong>Issue 1: Windows PowerShell Execution Policy Error</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cannot be loaded because running scripts is disabled on this system&quot;</span>
+</code></pre></div>
+
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Set-ExecutionPolicy</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
+</code></pre></div>
+
+<p><strong>Issue 2: Permission Denied on Linux/macOS</strong></p>
+<div class="codehilite"><pre><span></span><code>Error: &quot;Permission denied&quot;
+</code></pre></div>
+
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>django_env/bin/activate
+<span class="nb">source</span><span class="w"> </span>django_env/bin/activate
+</code></pre></div>
+
+<p><strong>Issue 3: Command Not Found</strong></p>
+<div class="codehilite"><pre><span></span><code>Error: &quot;python: command not found&quot;
+</code></pre></div>
+
+<p><strong>Solution:</strong>
+- Try <code>python3</code> instead of <code>python</code>
+- Verify Python is installed: <code>python3 --version</code></p>
 <p><strong>Why use virtual environments?</strong>
 - Isolates project dependencies
 - Prevents version conflicts
@@ -1393,6 +1626,52 @@ touch<span class="w"> </span>.gitignore
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>You've learned:</p>
+<p>✅ What Django is and why it's popular
+✅ Django's MVT architecture
+✅ How to set up a Python virtual environment
+✅ How to install Django
+✅ How to create a Django project and app
+✅ Django project structure
+✅ Essential Django management commands</p>
+<h3 id="common-mistakes-to-avoid">Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Permanent link">&para;</a></h3>
+<h3 id="mistake-1-forgetting-to-activate-virtual-environment">Mistake 1: Forgetting to Activate Virtual Environment<a class="headerlink" href="#mistake-1-forgetting-to-activate-virtual-environment" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Packages installed globally instead of in virtual environment
+<strong>Symptom</strong>: <code>ModuleNotFoundError</code> even after installing Django
+<strong>Solution</strong>: Always activate virtual environment before installing packages</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>django_env/bin/activate<span class="w">  </span><span class="c1"># Linux/Mac</span>
+django_env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># Windows</span>
+</code></pre></div>
+
+<h3 id="mistake-2-using-wrong-python-command">Mistake 2: Using Wrong Python Command<a class="headerlink" href="#mistake-2-using-wrong-python-command" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>python: command not found</code> or wrong Python version
+<strong>Solution</strong>: 
+- Check which command works: <code>python --version</code> or <code>python3 --version</code>
+- Use the correct one consistently throughout the project</p>
+<h3 id="mistake-3-not-adding-app-to-installed_apps">Mistake 3: Not Adding App to INSTALLED_APPS<a class="headerlink" href="#mistake-3-not-adding-app-to-installed_apps" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>django.core.exceptions.ImproperlyConfigured: No module named 'tasks'</code>
+<strong>Solution</strong>: Add your app to <code>INSTALLED_APPS</code> in <code>settings.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ...</span>
+    <span class="s1">&#39;tasks&#39;</span><span class="p">,</span>  <span class="c1"># Don&#39;t forget this!</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<h3 id="mistake-4-running-server-on-wrong-port">Mistake 4: Running Server on Wrong Port<a class="headerlink" href="#mistake-4-running-server-on-wrong-port" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Port already in use
+<strong>Solution</strong>: Specify a different port</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">8001</span>
+</code></pre></div>
+
+<h3 id="mistake-5-not-running-migrations-after-model-changes">Mistake 5: Not Running Migrations After Model Changes<a class="headerlink" href="#mistake-5-not-running-migrations-after-model-changes" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>django.db.utils.OperationalError: no such table</code>
+<strong>Solution</strong>: Always run migrations after creating/modifying models</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</code></pre></div>
+
+<hr />
+<p><strong>You're now ready to start building Django applications! 🚀</strong></p>
+<p><strong>Next:</strong> Continue to <a href="02_FBV_Models_and_Database.html"><code>02_FBV_Models_and_Database.md</code></a> to learn about Django models and databases.</p>
 <p>✅ What Django is and why it's popular
 ✅ Django's MVT architecture
 ✅ How to set up a Python virtual environment

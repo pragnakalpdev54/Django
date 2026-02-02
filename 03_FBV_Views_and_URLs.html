@@ -1006,6 +1006,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes to Avoid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes to Avoid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mistake-1-forgetting-login_required-decorator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 1: Forgetting @login_required Decorator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-2-not-checking-user-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 2: Not Checking User Ownership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-3-forgetting-csrf-token-in-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 3: Forgetting CSRF Token in Forms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-4-using-get-for-data-modification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 4: Using GET for Data Modification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-5-not-validating-sort-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 5: Not Validating Sort Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1055,7 +1127,88 @@
   <span class="md-ellipsis">
     
   
-    Complete Project
+    Complete Project with FBV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06_CBV_Introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class-Based Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07_CBV_Generic_Views.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08_CBV_Complete_Project.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Project with CBV
   
 
     
@@ -2299,6 +2452,62 @@
 - Work with forms
 - Display data dynamically
 - Build the complete UI</p>
+<hr />
+<h2 id="common-mistakes-to-avoid">Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Permanent link">&para;</a></h2>
+<h3 id="mistake-1-forgetting-login_required-decorator">Mistake 1: Forgetting @login_required Decorator<a class="headerlink" href="#mistake-1-forgetting-login_required-decorator" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Unauthenticated users can access protected views
+<strong>Solution</strong>: Always add <code>@login_required</code> to views that need authentication</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span><span class="p">(</span><span class="n">login_url</span><span class="o">=</span><span class="s1">&#39;login&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">task_list</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># Your code</span>
+</code></pre></div>
+
+<h3 id="mistake-2-not-checking-user-ownership">Mistake 2: Not Checking User Ownership<a class="headerlink" href="#mistake-2-not-checking-user-ownership" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Users can view/edit other users' data
+<strong>Solution</strong>: Always filter by <code>created_by=request.user</code></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good - Secure</span>
+<span class="n">task</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">,</span> <span class="n">created_by</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># Bad - Insecure</span>
+<span class="n">task</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="mistake-3-forgetting-csrf-token-in-forms">Mistake 3: Forgetting CSRF Token in Forms<a class="headerlink" href="#mistake-3-forgetting-csrf-token-in-forms" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>CSRF verification failed</code>
+<strong>Solution</strong>: Always include <code>{% csrf_token %}</code> in forms</p>
+<div class="codehilite"><pre><span></span><code><span class="x">&lt;form method=&quot;POST&quot;&gt;</span>
+<span class="x">    </span><span class="cp">{%</span> <span class="k">csrf_token</span> <span class="cp">%}</span><span class="x">  &lt;!-- Don&#39;t forget this! --&gt;</span>
+<span class="x">    &lt;!-- form fields --&gt;</span>
+<span class="x">&lt;/form&gt;</span>
+</code></pre></div>
+
+<h3 id="mistake-4-using-get-for-data-modification">Mistake 4: Using GET for Data Modification<a class="headerlink" href="#mistake-4-using-get-for-data-modification" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: Data can be modified via URL links
+<strong>Solution</strong>: Use POST for create/update/delete operations</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good</span>
+<span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+    <span class="c1"># Modify data</span>
+
+<span class="c1"># Bad - Never do this</span>
+<span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+    <span class="n">task</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>  <span class="c1"># Dangerous!</span>
+</code></pre></div>
+
+<h3 id="mistake-5-not-validating-sort-parameters">Mistake 5: Not Validating Sort Parameters<a class="headerlink" href="#mistake-5-not-validating-sort-parameters" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: SQL injection vulnerability
+<strong>Solution</strong>: Validate user input before using in queries</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Good</span>
+<span class="n">allowed_sort</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">sort_column</span> <span class="ow">in</span> <span class="n">allowed_sort</span><span class="p">:</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="n">tasks</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">sort_column</span><span class="p">)</span>
+
+<span class="c1"># Bad</span>
+<span class="n">sort_column</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sort&#39;</span><span class="p">)</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">tasks</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">sort_column</span><span class="p">)</span>  <span class="c1"># Dangerous!</span>
+</code></pre></div>
+
 <hr />
 <p><strong>Views are ready! Let's build the frontend! 🎨</strong></p>
 

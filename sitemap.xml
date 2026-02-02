@@ -2,26 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://pragnakalpdev54.github.io/Django/index.html</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-02-02</lastmod>
     </url>
     <url>
          <loc>https://pragnakalpdev54.github.io/Django/01_Introduction_and_Setup.html</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-02-02</lastmod>
     </url>
     <url>
          <loc>https://pragnakalpdev54.github.io/Django/02_FBV_Models_and_Database.html</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-02-02</lastmod>
     </url>
     <url>
          <loc>https://pragnakalpdev54.github.io/Django/03_FBV_Views_and_URLs.html</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-02-02</lastmod>
     </url>
     <url>
          <loc>https://pragnakalpdev54.github.io/Django/04_FBV_Templates_and_Forms.html</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-02-02</lastmod>
     </url>
     <url>
          <loc>https://pragnakalpdev54.github.io/Django/05_FBV_Complete_Project.html</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-02-02</lastmod>
+    </url>
+    <url>
+         <loc>https://pragnakalpdev54.github.io/Django/06_CBV_Introduction.html</loc>
+         <lastmod>2026-02-02</lastmod>
+    </url>
+    <url>
+         <loc>https://pragnakalpdev54.github.io/Django/07_CBV_Generic_Views.html</loc>
+         <lastmod>2026-02-02</lastmod>
+    </url>
+    <url>
+         <loc>https://pragnakalpdev54.github.io/Django/08_CBV_Complete_Project.html</loc>
+         <lastmod>2026-02-02</lastmod>
     </url>
 </urlset>
