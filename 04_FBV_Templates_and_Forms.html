@@ -475,10 +475,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#creating-forms" class="md-nav__link">
+  <a href="#expanding-the-formspy-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating Forms
+        Expanding the forms.py File
       
     </span>
   </a>
@@ -1457,14 +1457,18 @@
 <hr />
 <h2 id="django-forms">Django Forms<a class="headerlink" href="#django-forms" title="Permanent link">&para;</a></h2>
 <p>Forms handle user input, validation, and data cleaning.</p>
-<h3 id="creating-forms">Creating Forms<a class="headerlink" href="#creating-forms" title="Permanent link">&para;</a></h3>
-<p><strong>File: <code>tasks/forms.py</code></strong> (create this file)</p>
+<p><strong>Note:</strong> We already created the <code>TaskForm</code> in the previous section (<a href="03_FBV_Views_and_URLs.html"><code>03_FBV_Views_and_URLs.md</code></a>). In this section, we'll expand on forms and create additional forms for user authentication.</p>
+<h3 id="expanding-the-formspy-file">Expanding the forms.py File<a class="headerlink" href="#expanding-the-formspy-file" title="Permanent link">&para;</a></h3>
+<p>Open the existing <code>tasks/forms.py</code> file and add the user registration form:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserCreationForm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>
 
+<span class="c1"># TaskForm already created in previous section</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TaskForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for creating and updating tasks&quot;&quot;&quot;</span>
+
     <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;due_date&#39;</span><span class="p">]</span>
@@ -1515,6 +1519,8 @@
             <span class="k">if</span> <span class="n">due_date</span> <span class="o">&lt;</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">():</span>
                 <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Due date cannot be in the past&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">due_date</span>
+
+<span class="c1"># Add User Registration Form below</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">UserRegisterForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
     <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span>

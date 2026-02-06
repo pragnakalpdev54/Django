@@ -463,6 +463,34 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-django-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Django Forms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Django Forms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-formspy-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create forms.py File
+      
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#step-7-create-task-creation-view-understanding-get-vs-post" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1465,6 +1493,98 @@
 - <code>get_object_or_404()</code> - Gets object or shows 404 error if not found
 - Security: <code>created_by=request.user</code> ensures user can only view their own tasks</p>
 <p><strong>✅ Task detail view is ready!</strong></p>
+<hr />
+<h2 id="creating-django-forms">Creating Django Forms<a class="headerlink" href="#creating-django-forms" title="Permanent link">&para;</a></h2>
+<p>Before we create views that handle forms, we need to create the form classes. Django forms handle user input, validation, and data cleaning.</p>
+<h3 id="step-1-create-formspy-file">Step 1: Create forms.py File<a class="headerlink" href="#step-1-create-formspy-file" title="Permanent link">&para;</a></h3>
+<p>Create a new file <code>tasks/forms.py</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for creating and updating tasks&quot;&quot;&quot;</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Task</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;due_date&#39;</span><span class="p">]</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter task title&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;required&#39;</span><span class="p">:</span> <span class="kc">True</span>
+            <span class="p">}),</span>
+            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter task description&#39;</span>
+            <span class="p">}),</span>
+            <span class="s1">&#39;priority&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span>
+            <span class="p">}),</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span>
+            <span class="p">}),</span>
+            <span class="s1">&#39;due_date&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">DateInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span>
+            <span class="p">}),</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate title length&quot;&quot;&quot;</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Title must be at least 3 characters long&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">title</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_due_date</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate due date is not in the past&quot;&quot;&quot;</span>
+        <span class="n">due_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;due_date&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">due_date</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">django.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">timezone</span>
+            <span class="k">if</span> <span class="n">due_date</span> <span class="o">&lt;</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Due date cannot be in the past&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">due_date</span>
+</code></pre></div>
+
+<p><strong>Understanding ModelForm:</strong></p>
+<ol>
+<li><strong>ModelForm</strong> - Automatically creates form from model</li>
+<li>Saves you from writing repetitive code</li>
+<li>Handles model saving automatically</li>
+<li>
+<p>Best for CRUD operations</p>
+</li>
+<li>
+<p><strong>Meta class</strong> - Configuration for the form</p>
+</li>
+<li><code>model = Task</code> - Which model to use</li>
+<li><code>fields = [...]</code> - Which fields to include</li>
+<li>
+<p><code>widgets = {...}</code> - Customize HTML input elements</p>
+</li>
+<li>
+<p><strong>Widgets</strong> - Control how fields are rendered</p>
+</li>
+<li>Add CSS classes for styling</li>
+<li>Set HTML attributes (placeholder, type, etc.)</li>
+<li>
+<p>Customize input appearance</p>
+</li>
+<li>
+<p><strong>Validation Methods</strong> - Custom validation logic</p>
+</li>
+<li><code>clean_fieldname()</code> - Validate specific field</li>
+<li>Raise <code>ValidationError</code> if invalid</li>
+<li>Return cleaned data if valid</li>
+</ol>
+<p><strong>Why use forms?</strong>
+- ✅ Automatic validation
+- ✅ Security (CSRF protection)
+- ✅ Clean data handling
+- ✅ Easy rendering in templates
+- ✅ Error messages</p>
+<p><strong>✅ TaskForm is ready! Now we can use it in views.</strong></p>
 <hr />
 <h3 id="step-7-create-task-creation-view-understanding-get-vs-post">Step 7: Create Task Creation View (Understanding GET vs POST)<a class="headerlink" href="#step-7-create-task-creation-view-understanding-get-vs-post" title="Permanent link">&para;</a></h3>
 <p>This view handles both displaying a form (GET) and processing it (POST):</p>
