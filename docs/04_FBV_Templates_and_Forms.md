@@ -436,9 +436,11 @@ tasks/
 
 Forms handle user input, validation, and data cleaning.
 
-### Creating Forms
+**Note:** We already created the `TaskForm` in the previous section ([`03_FBV_Views_and_URLs.md`](03_FBV_Views_and_URLs.md)). In this section, we'll expand on forms and create additional forms for user authentication.
 
-**File: `tasks/forms.py`** (create this file)
+### Expanding the forms.py File
+
+Open the existing `tasks/forms.py` file and add the user registration form:
 
 ```python
 from django import forms
@@ -446,7 +448,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Task
 
+# TaskForm already created in previous section
 class TaskForm(forms.ModelForm):
+    """Form for creating and updating tasks"""
+    
     class Meta:
         model = Task
         fields = ['title', 'description', 'priority', 'status', 'due_date']
@@ -497,6 +502,8 @@ class TaskForm(forms.ModelForm):
             if due_date < timezone.now().date():
                 raise forms.ValidationError("Due date cannot be in the past")
         return due_date
+
+# Add User Registration Form below
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(

@@ -270,6 +270,97 @@ def task_detail(request, pk):
 
 ---
 
+## Creating Django Forms
+
+Before we create views that handle forms, we need to create the form classes. Django forms handle user input, validation, and data cleaning.
+
+### Step 1: Create forms.py File
+
+Create a new file `tasks/forms.py`:
+
+```python
+from django import forms
+from .models import Task
+
+class TaskForm(forms.ModelForm):
+    """Form for creating and updating tasks"""
+    
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'priority', 'status', 'due_date']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter task title',
+                'required': True
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 4,
+                'placeholder': 'Enter task description'
+            }),
+            'priority': forms.Select(attrs={
+                'class': 'form-control'
+            }),
+            'status': forms.Select(attrs={
+                'class': 'form-control'
+            }),
+            'due_date': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date'
+            }),
+        }
+    
+    def clean_title(self):
+        """Validate title length"""
+        title = self.cleaned_data.get('title')
+        if len(title) < 3:
+            raise forms.ValidationError("Title must be at least 3 characters long")
+        return title
+    
+    def clean_due_date(self):
+        """Validate due date is not in the past"""
+        due_date = self.cleaned_data.get('due_date')
+        if due_date:
+            from django.utils import timezone
+            if due_date < timezone.now().date():
+                raise forms.ValidationError("Due date cannot be in the past")
+        return due_date
+```
+
+**Understanding ModelForm:**
+
+1. **ModelForm** - Automatically creates form from model
+   - Saves you from writing repetitive code
+   - Handles model saving automatically
+   - Best for CRUD operations
+
+2. **Meta class** - Configuration for the form
+   - `model = Task` - Which model to use
+   - `fields = [...]` - Which fields to include
+   - `widgets = {...}` - Customize HTML input elements
+
+3. **Widgets** - Control how fields are rendered
+   - Add CSS classes for styling
+   - Set HTML attributes (placeholder, type, etc.)
+   - Customize input appearance
+
+4. **Validation Methods** - Custom validation logic
+   - `clean_fieldname()` - Validate specific field
+   - Raise `ValidationError` if invalid
+   - Return cleaned data if valid
+
+**Why use forms?**
+- ✅ Automatic validation
+- ✅ Security (CSRF protection)
+- ✅ Clean data handling
+- ✅ Easy rendering in templates
+- ✅ Error messages
+
+**✅ TaskForm is ready! Now we can use it in views.**
+
+---
+
 ### Step 7: Create Task Creation View (Understanding GET vs POST)
 
 This view handles both displaying a form (GET) and processing it (POST):
